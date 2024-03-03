@@ -1,0 +1,218 @@
+\chapter{集合及其基数}
+本文档已发布于https://github.com/Niohuruhala/HA-CRP
+\section{集合及其运算}
+1.证明\((B-A) \cup A =B\)的充要条件是\(A \subset B\)
+\begin{proof}
+    充分性: 若\(A \subset B\),则\((B-A) \cup A = (B \cap A^{c})\cup A = B\). \\ 必要性易证.
+\end{proof}
+2.证明\(A -B = A \cap B^{c}\)
+\begin{proof}
+    \begin{align*}
+        x \in A-B &\Leftrightarrow x \in A  \text{且} x \notin B \\ 
+        &\Leftrightarrow x\in A \text{且} x \in B^{c} \\ 
+        & \Leftrightarrow x \in A \cap B^{c}
+    \end{align*}
+\end{proof}
+3.证明定理4中的(3),(4).定理6(De.Morgen 公式)中的第二式和定理9 
+\begin{proof}
+    定理4(3) \begin{align*}
+        x \in \bigcap\limits_{\lambda \in \Lambda } A_{\lambda} & \Rightarrow x \in A_{\lambda} \subset B_{\lambda} (\lambda \in \Lambda) \\ 
+        &\Rightarrow x \in \bigcap\limits_{\lambda \in \Lambda} B_{\lambda}
+    \end{align*}
+    同理: \[\bigcap\limits_{\lambda \in \Lambda} B_{\lambda} \supset C\]
+    定理4(4) \begin{align*}
+        x \in \bigcup\limits_{\lambda \in \Lambda} (A_{\lambda} \bigcup B_{\lambda}) &\Leftrightarrow (\exists \lambda \in \Lambda) x \in A_{\lambda} \text{或者} B_{\lambda} \\
+            &\Leftrightarrow x \in \bigl(\bigcup\limits_{\lambda \in \Lambda}A_{\lambda}\bigr) \cup \bigl(\bigcup\limits_{\lambda \in \Lambda}B_{\lambda}\bigr)
+    \end{align*}
+    定理6: 如果\(\bigl(\bigcap\limits_{\lambda\in\Lambda}A_{\lambda}\bigr)^{c}\)不是空集,那么 \(x \in \bigl(\bigcap\limits_{\lambda\in\Lambda}A_{\lambda}\bigr)^{c}\),
+    则\(x \in S \text{且} x \notin \bigcap\limits_{\lambda\in\Lambda}A_{\lambda}\),因而对于\(\exists \lambda \in \Lambda\),有\(x \notin A_{\lambda}\),所以有 \[x\in \bigcup\limits_{\lambda\in\Lambda} A^{c}_{\lambda}\]反之亦然.
+    定理9: 由于\(A_n \subset A_{n+1}\),得\(\bigcap\limits_{k=m}^{\infty} A_k = A_m\)  则\begin{align*}
+        \lim_{n} A_n &= \bigcup\limits_{m=1}^{\infty}\bigcap\limits_{i=m}^{\infty}A_i \\ 
+        &= \bigcup\limits_{m=1}^{\infty}A_m 
+    \end{align*}
+\end{proof}
+4.证明\((A-B) \cup B = (A \cup B) - B\)的充要条件是\(B=\emptyset\)
+\begin{proof}
+    充分性:若\(B = \emptyset\),则 \((A -B) \cup B = A-B = A = (A \cup B) -B\). 
+    必要性:若\((A-B) \cup B = (A \cup B) - B\) 则 \(A\cap B^{c} \cup B = (A \cup B) \cap B^{c}\) 则\(B =\emptyset\)
+\end{proof}
+5.设\(S = \left\{1,2,3,4\right\}\) , \(\mathscr{A} = \left\{\left\{1,2\right\}\left\{3,4\right\}\right\}\),求\(\mathscr{F}(\mathscr{A})\),又如果\(S = \left\{\frac{1}{n} ; n=1,2,3 , \dots \right\} \), \(\mathscr{A}_0\ = \left\{\left\{\frac{1}{n}; \text{n为奇数}\right\}\right\}\), \(\mathscr{A}_1 = \left\{\left\{1\right\}\left\{\frac{1}{3}\right\} \dots \left\{\frac{1}{2i+1}\right\}\dots \right\}\)
+问\(\mathscr{F} (\mathscr{A}_0)\)和 \(\mathscr{F}(\mathscr{A}_1)\)是什么 ? 
+\begin{proof}
+    \begin{align*}
+        \mathscr{F}(\mathscr{A})&= \left\{\emptyset , S , A \right\} \\ 
+        \mathscr{F}(\mathscr{A}_0)&= \left\{S , \emptyset , A, \mathscr{A}_0\ = \left\{\left\{\frac{1}{n}; \text{n为偶数}\right\}\right\}\right\} \\ 
+        \mathscr{F}(\mathscr{A}_1) &= \left\{S, \emptyset, A_1 ,A_2\right\}
+    \end{align*}
+    其中\(A_1\)指的是\(\mathscr{A}_0\ = \left\{\left\{\frac{1}{n}; \text{n为偶数}\right\}\right\}\)的全体子集, \(A_2\)指的是\( \left\{\left\{\frac{1}{n}; \text{n为偶数}\right\}\right\} \cap  \left\{\left\{\frac{1}{n}; \text{n为奇数}\right\}\right\}\)的全体子集
+\end{proof}
+6.对于S的子集A,定义A的示性函数为
+\begin{align}
+\varphi_{A}(x) = \begin{cases}
+    1,\quad &x\in A \\ 
+    0,\quad &x \notin A 
+\end{cases}    
+\end{align}
+证明:如果\(A_1,A_2,A_3 , \dots ,A_n ,\dots \)是S的子集序列,则 \begin{align*}
+    \varphi_{\liminf_{n}A_n}(x) = \liminf_{n} \varphi_{A_n} (x) \quad  \varphi_{\limsup_{n}A_n}(x) = \limsup_{n} \varphi_{A_n} (x)
+\end{align*}
+\begin{proof}
+    不妨令\(\varphi_{\liminf_{n} A_n}(x) = 1 \),不失一般性,从而有\(x \in \liminf_{n}A_n\),根据定义可知,只有有限多个n,使得\(x \notin A_n\) . 因此,\(\varphi_{A_n}(x)\)只有有限个0值,因此\(\liminf_{n}\varphi_{A_n}(x) = 1 \)
+    故\(\varphi_{\liminf_{n}A_n}(x) =\liminf_{n}\varphi_{A_n}(x)\).
+    \\ 
+    证明\(\varphi_{\limsup_{n}A_n}(x) = \limsup_{n} \varphi_{A_n} (x)\)过程同上:\begin{align*}
+        \varphi_{\limsup_{n}A_n }(x) = 1 &\Leftrightarrow  \text{有无穷多个n,使得} x \in A_n \\ 
+        &\Leftrightarrow\varphi_{A_n}(x) =1 \text{有无穷多个n} \\ 
+        &\Leftrightarrow \limsup_{n}\varphi_{A_n}(x) = 1
+    \end{align*}
+\end{proof}
+7.设f(x)是定义于E上的实函数,n为一常数,证明 \begin{align*}
+    E[x; f(x) >a] &= \bigcup\limits_{n=1}^{\infty} E [x ; f(x) \geq a+ \frac{1}{n}] \\ 
+    E[x;f(x) \geq a] &= \bigcap\limits_{n=1}^{\infty} E[x; f(x) > a- \frac{1}{n}] 
+\end{align*}
+\begin{proof}
+    \begin{align*}
+        E[x;f(x)>a] &\Leftrightarrow \exists n \geq 0  \quad f(x) \geq a + \frac{1}{n} \\ 
+        &\Leftrightarrow \bigcup\limits_{n=1}^{\infty} E[x ; f(x) \geq a+ \frac{1}{n}]
+    \end{align*}
+    \begin{align*}
+        E[x ; f(x) \geq a ] &\Leftrightarrow \forall  n \geq 0 \quad f(x) \geq a - \frac{1}{n} \\
+        &\Leftrightarrow \bigcap\limits_{n=1}^{\infty} E[x ; f(x) > a -\frac{1}{n}]
+    \end{align*}
+\end{proof}
+8:如果实函数序列\(\left\{f_n(x)\right\}^{\infty}_{n=1}\)在E上收敛于f(x),则对于任意常数a,都有
+\begin{align*}
+    E[x;f(x) \leq a] &= \bigcap\limits_{n=1}^{\infty}\liminf_{n}E[x; f_n (x) \leq a+ \frac{1}{k}] \\ 
+    &= \bigcap\limits_{n=1}^{\infty}\liminf_{n}E[x; f_n (x) < a+ \frac{1}{k}]
+\end{align*}
+\begin{proof}
+    由于\[\bigcap\limits_{k=1}^{\infty}\liminf_{n}E[x; f_n (x) \leq a+ \frac{1}{k}] \supset \bigcap\limits_{k=1}^{\infty}\liminf_{n}E[x; f_n (x) < a+ \frac{1}{k}] \]
+    所以问题转化为:证明:\[ \bigcap\limits_{k=1}^{\infty}\liminf_{n}E[x; f_n (x) \leq a+ \frac{1}{k}] \subset E[x ; f(x) \leq a] \subset \bigcap\limits_{k=1}^{\infty}\liminf_{n}E[x; f_n (x) < a+ \frac{1}{k}]\]
+    
+    证明左式:
+    \begin{align*}
+        x \in \bigcap\limits_{k=1}^{\infty}\liminf_{n}E[x; f_n (x) \leq a+ \frac{1}{k}] &\rightarrow \forall k \geq 1 \exists m >0 n\geq m  f_n(x)\leq a+\frac{1}{k} \\
+            &\rightarrow \forall k \geq 1 f(x) \leq a+\frac{1}{k} \quad(n \rightarrow \infty) \\ 
+            &\rightarrow  x \in E[x ; f(x) \leq a] \quad (\text{令}k \rightarrow \infty)
+    \end{align*}
+    证明右式:
+    \begin{align*}
+        x \in E[x ; f(x) \leq a ] &\rightarrow \forall k >0 f(x) < a + \frac{1}{k} 
+    \end{align*}
+    引入: \[f_n(x) < a + \frac{1}{k}\]
+    这是因为:\(\left\{f_n(x)\right\}_{n=1}^{\infty} \)一致收敛为\(f(x)\).
+    所以有: \(x \in \bigcap\limits_{k=1}^{\infty}\liminf_{n}E[x; f_n (x) < a+ \frac{1}{k}]\)
+    \\
+    得证
+\end{proof}
+\section{集合的基数}
+1.用解析式给出\((-1,1)\)和\(-\infty , \infty\)之间的一个1-1对应 
+\begin{proof}
+    \begin{align*}
+        f(x) = \tan(\frac{\pi}{2}x)
+    \end{align*}
+\end{proof}
+2.证明只要\(a < b \)就有\((a,b) \sim (0,1)\)
+\begin{proof}
+    \begin{align*}
+        f(x)= \frac{x-b}{a-b}
+    \end{align*}
+    易证上述解析式是既单又满的.
+\end{proof}
+3证明平面上的任何不带圆周的圆上的点所作成的点集都是和整个平面上的点所作成的点集对等的,进而证明平面上的任何非空的开集中的点所作成的点集和整个平面上的点所作成的点集对等
+\begin{proof}
+    首先:平面内任何圆周所围成的区域均可变换为以原点为中心的圆周围成的区域,其次引入极坐标\((r, \theta)\),所以有解析式\begin{align*}
+        f((r,\theta)) = (\tan(\frac{\pi r}{2a}), \theta)
+    \end{align*}
+    所以平面上的任何不带圆周的圆上的点所作成的点集都是和整个平面上的点所作成的点集对等的.
+    因为开集具有内点,所以根据Bernstein定理易证:平面上的任何非空的开集中的点所作成的点集和整个平面上的点所作成的点集对等.
+\end{proof}
+\section{可数集合}
+1.证明平面上坐标为有理数的点构成一可数集合.
+\begin{proof}
+    根据定理:\(\mathbb{Q}^2 \sim Q \sim c\)
+\end{proof}
+2.以数直线上互不相交的开区间为元素的任意集合至多含有可数多个元素
+\begin{proof}
+    记该集合为\[A=\left\{(a_1,b_1),(a_2,b_2),\dots,(a_n,b_n),\dots \right\}\]
+    由于开区间互不相交,则\(a_i \neq a_j\),因此\(A\)到\(\mathbb{Q}\)有一一对应,得证
+\end{proof}
+3.所有系数为有理数的多项式组成一可数集合
+\begin{proof}
+    记\(P_n\)为n次多项式,根据定理,\(\mathbb{Q}^n\)为可数集合,则\(P_n\)为可数集(\(P_n \text{中的系数组成}\mathbb{Q}^n\) )记所有系数为有理数的多项式的集合为A
+    则\[A=\bigcup\limits_{i=1}^{\infty}P_n \]得证
+\end{proof}
+4.如果f(x)是\(-\infty , \infty \)上的单调函数,则\(f(x)\)的不连续点最多有可数多个
+\begin{proof}
+    记\(f(x)\)的不连续点为\(\left\{a_i (i \in \Lambda)\right\}\),因为\(f(x)\)是单调函数,从而得到一组互不相交的开区间,由题2可知:\(f(x)\)的不连续点最多有可数多个
+\end{proof}
+5.设A是一无穷集合,证明必有\(A^{*} \subset A\)使得\(A^{*} \sim A\)且\(A -A^{*}\)可数
+\begin{proof}
+    由于A是无穷集合,那么有一个可数子集\(A^{'}\)记\(A^{*}=A - A^{'}\),由于\(A^{'}\)是可数集合且\(A^{*}\)是无穷集合,从而\(A=A^{*}\cup A^{'} \sim A^{*}\)
+\end{proof}
+6.若A为一可数集合,则A的所有有限子集构成的集合也是可数集合
+\begin{proof}
+    记\(A_n \subset A\)为有n个元素的集合.则\(A_n\)是可数集.从而\[A=\bigcup\limits_{i=1}^{\infty}A_n \text{是可数集}\]
+\end{proof}
+7.若A是由非蜕化的开区间组成的不可数无穷集合,则有\(\delta >0\),使A中有无穷多个区间的长度大于\(\delta\).
+\begin{proof}
+    (反证法):A中有有限多个区间的长度大于\(\delta\),因此 A中有无穷多个区间小于\(\delta\). 记如下符号:
+    \[B_n :  \left\{x ; |x| < \frac{1}{n} \right\}\]
+    可知\(B_n\)是可数集,因此\[A = \bigcup\limits_{k=1}^{\infty} \quad \text{是可数集}\]
+    所以,矛盾!
+\end{proof}
+8.如果空间中的长方形\[I = \left\{(x,y,z) ; a_1 < x<a_2 , b_1<y < b_2,c_1<z<c_2\right\}\]
+中的\(a_1,a_2,b_1,b_2,c_1,c_2(a_1< a_2 , b_1 <b_2 ,c_1 <c_2)\)都是有理数,则称I为有理长方体,证明全体有理长方体构成一个可数集合
+\begin{proof}
+    存在如下的一一对应:\[i: I \rightarrow \mathbb{Q}^6 i(I)=(a_1,a_2,b_1,b_2,c_1,c_2)\]
+    由于定理:\(\mathbb{Q}^6\)是可数集.得证.
+\end{proof}
+\section{不可数集合}
+1.证明\([0,1]\)上的全体无理数构成一不可数无穷集合
+\begin{proof}
+   (反证法):  若\([0,1]\)上的全体无理数构成一可数集A.那么\([0,1] = A\cup Q \) 从而\([0,1]\)为可数集,矛盾!
+\end{proof}
+2.证明全体代数数构成一可数集合,进而证明必存在超越数.
+\begin{proof}
+    由于全体代数数的集合A和整系数多项式组成的集合有一一对应,所以全体代数数构成一个可数集合.
+    同时(反证法):若不存在超越数,那么R是可数集,矛盾!
+\end{proof}
+3.证明如果a实可数基数,则\(2^a =c\)
+\begin{proof}
+    一方面,引入示性函数
+    \begin{align}\label{示性函数}
+        \varphi_{A}(n)=\begin{cases}
+            1, \quad&n\in A\\ 
+            0,\quad &n \notin A
+        \end{cases}
+    \end{align}
+    所以对于正整数集的任意子集\(A\),考虑A的示性函数可知:
+    \[\prod_{n=1}^{\infty}\varphi_A (n) \in (0,1)\] 
+    上述映射是正整数集到\((0,1)\)的单射
+    所以\(2^a \geq c\)
+    另一方面,对于\(\forall x \in (0,1)\),考虑\((0,1)\)中的有理数集\(Q_0\)的子集\(A_x=\left\{r;r\leq x , r\in Q_0 \right\}\),那么上述映射是(0,1)的幂集到\(Q_0\)的单射,因此 \(c \leq 2^a\)
+    根据Bernstein定理可得: \(2^a = c\)
+\end{proof}
+4.证明如果\(\overline{\overline{A \cup B}} =c\),则\(\overline{\overline{A}},\overline{\overline{B}}\)中至少一个为c
+\begin{proof}
+    (反证法):根据连续统假设,作如下反证法. 如果\(\overline{\overline{A}},\overline{\overline{B}}\)均是可数集,那么矛盾显然
+\end{proof}
+5.设\(F\)是\([0,1]\)上全体实函数所构成的集合,证明\(\overline{\overline{F}}= 2^c\)
+\begin{proof}
+    考虑\(A \subset [0,1]\)的示性函数\ref{示性函数}\begin{align*}
+        \varphi_A(n)=\begin{cases}
+            1,\quad &n\in A \\ 
+            0 \quad & n \notin A 
+        \end{cases}
+    \end{align*}
+    \(\varphi_A \in F\),从而\(\overline{\overline{F}} \geq 2^c\)
+    其次,由于\((x,f(x)) x \in R\)是\(R^2\)的子集因此\(\overline{\overline{F}} \leq 2^c\)
+    所以\(\overline{\overline{F}} = 2^c\)
+\end{proof}
+\section{上课思考题}
+如果集族\(\left\{A_{\alpha}\right\}_{\alpha \in (0,1)}\)满足\(\overline{\overline{A}}=c\)那么\[\overline{\overline{\bigcup\limits_{\alpha\in (0,1)}A_{\alpha}}}=c\]
+\begin{proof}
+    考虑\(\bigcup\limits_{\alpha \in (0,1)}A_{\alpha} \rightarrow (\alpha , A_{\alpha})\).
+    由于上述映射是一一对应的,又由于\(\overline{\overline{A_{\alpha}}}=\overline{\overline{(0,1)}} = c\)
+    从而\[\overline{\overline{\bigcup\limits_{\alpha \in (0,1)}A_{\alpha}}} = c \]
+\end{proof}
