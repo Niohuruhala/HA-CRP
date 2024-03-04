@@ -1,0 +1,541 @@
+\chapter{拓扑空间与连续映射}
+当谈及到拓扑空间时，我们大多数初学者都是茫然的，不知所措的。因此需要给出一个例子来直观理解拓扑空间是什么，在此，特别点出，欧几里得空间是一个拓扑空间，尽管它在拓扑学中的用处（地位）并没有其在数学分析中要来的重要，但是不乏是一个直观了解拓扑学的方法。同时也应该说明的是：前几章所学的内容通常被称为点集拓扑（即从拓扑空间到闭曲面分类定理），这类内容不算难，重点在于了解并学会如何用拓扑语言进行阐述，这是关键。下面开始学习：
+\section{拓扑空间}
+\begin{definition}[拓扑]
+    设X是以非空集合，且\(\exists \tau \subseteq 2^{x}\) 满足:
+    \begin{enumerate}
+        \item \(\emptyset , X \in \tau \) \\
+        \item 任意并封闭 若\(A_{\lambda} \in \tau ,\lambda \in A\)则 \[\bigcup_{\lambda \in \Lambda }A_{\lambda} \in \tau\] \\
+        \item 有限交封闭 若\(A_{k} \in \tau \qquad \left(k=0,1,2 \dots\right)\) 则 \[\bigcap_{k=1}^{n}A_k \in \tau\]
+    \end{enumerate}
+    则称\(\tau\)是X上额一个拓扑，\(\tau\)中袁旭记作X的开集，\(\left(X, \tau\right)\)为拓扑空间
+\end{definition}
+\begin{remark}
+    有限交封闭在实际中，可以等价于两个交封闭。
+\end{remark}
+\subsection*{度量}
+在数学分析中，我们学过欧氏空间，下面从拓扑学的角度进行推广为度量空间，也即\(\left(x,d\right)\),d为距离.
+并且它具有广泛性：任何满足存在度量的空间都可被称为度量空间.下面给出两个例子来说明度量空间的广泛性.
+\begin{example}
+    设X是一非空集合,定义\[
+        d(x,y)=
+        \begin{cases}
+            0 \quad x=y \\
+            1 \quad x\neq y 
+        \end{cases}\]
+        可验证d是一度量
+\end{example}
+\begin{example}
+    设\(\mathbb{C}\left(\left[0,1\right]\right)\)令f,g是上面集合的两个元素,
+    设\[
+    d(f,g)=\sup\limits_{t\in \left[0,1\right]} |f(t)-g(t)|    
+    \]
+容易验证d也是一个度量.
+\end{example}
+实际上在数学分析中的\(\varepsilon-\delta\)语言就是度量语言。
+那么度量空间是不是拓扑空间呢？
+答案是肯定的，任何一个度量空间都可以自然地诱导出一个拓扑空间
+在验证之前先介绍一些定义:
+\begin{definition}
+    球形邻域: \[B_d(x,\gamma)=\left\{y\in X ; d(x,y)<\gamma \right\}\]
+    \[\tau_d=\left\{\text{若干球形邻域的并}\right\}\]
+\end{definition}    
+从而可以验证\(\tau_d\)是X上的一个拓扑:
+先证明一个引理:
+\begin{lemma}
+    两个球形邻域的交是若干球形邻域的并
+\end{lemma}
+\begin{proof}
+    设两个球形邻域\(B_1\left(x_1,\gamma_1\right) \quad B_2\left(x_2,\gamma_2\right)\)
+    若它们不相交，则结论显然
+    \\
+    所以只需证明它们相交的情况:、
+    \\
+    命题可以等价为：对于交集中任意的点，都有一个球形邻域包含它.
+    那么可以取\(\forall x \in B\left(x_1,{\gamma}_1\right) \cap B\left(x_2,{\gamma}_2\right)\)
+    取\[r_x<\min
+    \begin{cases}
+        r_1 -d(x,x_1) \\
+        r_2 -d(x,x_2)
+    \end{cases}\]
+    从而由三角不等式可知 \[B\left(x,r_x\right) \subset B_1\cap B_2\]
+    进而\[\bigcup_{x\in B_1\cap B_2}B(x,r_x)=B_1 \cap B_2\]
+\end{proof}
+接下来验证\({\tau}_d\)是X上的一个拓扑.
+\begin{proof}
+    首先:易知 \(\emptyset , X \in \tau_d\)\\
+    其次 验证任意并封闭,若\(u_{\lambda} \in \tau_d \lambda \in \Lambda\)则
+    \[\bigcup_{\lambda \in \Lambda} u_{\lambda} \in \tau_d\] \\
+    最后 \(\forall  A,B \in \tau_d \)需证\(A\cap B \in \tau_d\)
+    可证 \(A \bigcup_{\alpha}B_{\alpha} \qquad B=\bigcup_{\beta}B_{\beta}\)
+    则\[A\cap B=\left(\bigcup_{\alpha}B_{\alpha}\right)\cap \left(\bigcup_{\beta}B_{\beta}\right)=\bigcup_{\alpha,\beta} \left(B_{\alpha}\cap B_{\beta}\right)\]
+\end{proof}
+\subsection*{可度量化}
+度量空间一定是拓扑空间，但是拓扑空间不一定是度量空间,换而言之，就是一个空间能否度量化:
+\begin{definition}[可度量化]
+   对于一个拓扑空间\(X,\tau\)，若存在度量d，使得\({\tau}_d=\tau\) 
+\end{definition}
+\begin{example}
+    对于集合\(X=\left\{a,b\right\}\)令:
+    \[{\tau}_0=\left\{\emptyset,X\right\},{\tau}_1=\left\{\emptyset,\left\{a\right\},X\right\},{\tau}_2=\left\{\emptyset,\left\{b\right\},X\right\},{\tau}_3=2^{x}\]
+    上述拓扑就是X的全部拓扑.
+\end{example}
+给出拓扑一般地概念:
+\begin{definition}
+    对于一般的拓扑空间\(X \tau\)
+    \begin{enumerate}
+        \item 平凡拓扑 \(\left\{\emptyset,X\right\} \)\\
+        \item 离散拓扑 \(\tau = 2^x\) 事实上，X的任意子集都是开集 同时离散拓扑还有等价的刻画：任意的单点集都是开集.同时离散拓扑总是可度量化的.
+                在前面已经给出一种度量"离散度量" \[d(x,y)=\begin{cases}
+                    0 \quad x=y \\
+                    1 \quad x\neq y
+                \end{cases}\]
+                所以可以验证\[\forall x \in X \quad B\left(x,\frac{1}{2}\right)=\left\{x\right\}\]
+                则离散度量是拓扑.    
+    \end{enumerate}
+\end{definition}
+\subsection*{拓扑之间的比较}
+比较两拓扑的大小,设\(\tau,\overline{\tau}\)若\(\tau \supseteq \overline{\tau} \),则称\(\tau\)比\(\overline{\tau}\)精细.
+\begin{corollary}
+    有限集X上的拓扑\(\tau\) \\
+    可度量化\(\Longleftrightarrow \)\(\tau\)是离散拓扑
+\end{corollary}
+\begin{proof}
+    首先必要性显然，只需证明充分性\\
+    充分性:由于\(\tau\)可度量化，则不妨设下述式子:
+    \[r_j=\frac{1}{2}\min\limits_{i \neq j} d(x_j,x_i)\]则
+    \[B\left\{x_i,x_j\right\}=\left\{x_j\right\}\]
+    从而证明每个单点集都是开集，因此充分性得证.
+\end{proof}
+继续上次课的内容，我们将继续深入探讨度量和拓扑的关系
+\begin{example}
+    对于\({\mathbf{R}}^{n}\),在上面定义欧氏度量\(d(x,y)=\sqrt{\sum_{k=1}^{n}{|x_i-y_i|}^2}\),上述度量诱导出的拓补称为欧氏拓扑.
+    在上次课所说的离散拓扑中
+    \[\rho(x,y)=\begin{cases}
+        0 \quad x =y \\
+        1 \quad x\neq y
+    \end{cases}\]，显然\({\tau}_{\rho} \neq {\tau}_d\)，并且在离散拓扑意义下的开集在欧氏拓扑中可能不是开集。
+\end{example}
+经上面的例子可知，不同的度量所产生的拓扑可能不同，但是有没有两种不同的度量所产生的拓扑相同呢？，下面给出例子
+\begin{example}
+    在 \({\mathbf{R}^{n}}\)中，定义如下度量 \[d_p(x,y)={\left(\sum_{k=1}^{n}{|x_i-y_i|}^p\right)}^{\frac{1}{p}} \quad p \geq 1\]
+    同时当\(p \rightarrow \infty\) 时
+    \[d_{\infty}(x,y)=\max\limits_{1\leq i \leq n}|x_i-y_i|\]
+    在平面中，随着p的增大，图形也逐渐从矩形慢慢变大，但是本质时不变的，都是圆形邻域!!!
+\end{example}
+介绍度量的等价性:
+\begin{definition}
+    对于X,\(d,\rho\)是X上的两个度量，如果存在\(k_1,k_2 >0\),使得对于\(\forall x, y \in X\)有
+    \[k_1d(x,y)\leq \rho(x,y)\leq k_2d(x,y)\]
+    则称\(d(x,y),\rho(x,y)\)是等价度量
+\end{definition}
+根据定义可得，\(d_p \quad 1<p<\infty\) 是等价度量
+\begin{proof}
+    有如下不等式
+    \[d_{\infty}\leq d_p(x,y)\leq \sqrt[n]{n}d_{\infty}\]
+\end{proof}
+\begin{corollary}
+    设\(d,\rho\)是X上的两个等价度量，则\(\tau_{d}=\tau_{\rho}\)
+\end{corollary}
+\begin{proof}
+    下证\(\tau_{d}\subseteq {\tau}_{\rho}\)只需证每个\[B_d(x,\tau) \subset {\tau}_{\rho}\]
+    要证\(\forall y \in  B_d(x,r)\)则只需证明
+    \[\exists \varepsilon >0 \text{使得} B_{\rho}(y,\varepsilon) \subseteq B_d(x,r)\]
+    若证明,进而\[\bigcup_{y \in  B_d(x,r)}B(y,\varepsilon) \subseteq B_d(x,r)\]
+    下面证明:
+    \[\exists \varepsilon_1 >0 \text{使得} B_{\rho}(y,\varepsilon) \subseteq B_d(x,r)\]
+    取\(\varepsilon_i=r-d(x,y)\)则\(B_d(y,\varepsilon_1)\subseteq B_d(x,r)\)
+    又由于\[k_1d(x,y) \leq \rho (x,y)\leq k_2d(x,y)\]
+    可见
+    \[B_{\rho}(y,k_1\varepsilon) \subseteq B_d(y,{\varepsilon_1})\]
+    这是因为若\(z \in B_{\rho}(y,k_1\varepsilon)\)则
+    \[d(z,y) \leq \frac{1}{k_1}\rho(z,y) \leq \frac{1}{k_1}k_1 \varepsilon_1 =\varepsilon_1\]
+    另一方面：同理可证\(\left(利用不等式右则\right)\)\({\tau}_{\rho}\subseteq {\tau}_{d}\)
+\end{proof}
+下面给出几个特殊的、需要记忆的例子
+\begin{example}[余有限拓扑]
+    它是一种与欧氏拓扑相差较大的拓扑,设X是无穷集合，定义\[\tau_f=\left\{A^{c},A\text{是有限子集}\right\}\cup \left\{\emptyset\right\}\]
+    \(\tau_f\)是拓扑 
+\end{example}
+\begin{remark}
+    finite 有限的. countable 可数的.
+\end{remark}
+\begin{example}[余可数拓扑]
+    设X是不可数无穷集 
+    \[\tau_c=\left\{\emptyset\right\}\cup \left\{A^{c},A是可数子集\right\}\]
+    \(\tau_c\)是拓扑
+\end{example}
+\begin{exercise}
+    验证\(\tau_c\)是拓扑
+\end{exercise}
+\begin{proof}
+    1.\(\emptyset , X \in \tau_c\) \\
+    2.任意并封闭,\(A^{c}_{\lambda} \in \tau_c \lambda \in \Lambda\),通过公式
+    \[\bigcup_{\lambda\in\Lambda}A^{c}_{\lambda\in\Lambda}={(\bigcap_{\lambda \in \Lambda}A_{\lambda})^{c}\subseteq \tau_c}\]
+    可知任意并封闭。
+    3.有限交封闭,\(A^{c},B^{c} \subseteq \tau_c\)则根据公式可得:
+    \[A^c\cap B^c={(A \cup B)^{c}} \subseteq \tau_c\]
+\end{proof}
+\begin{remark}
+    上面所述的可数子集，包括有限集和可数无穷.必须承认这一点，否则上述定义会错误.
+\end{remark}
+
+
+
+
+\begin{definition}
+    闭集:指开集的余集
+\end{definition}
+\begin{theorem}
+    设\(\left(x,\tau\right)\),那么闭集有性质：
+    \begin{enumerate}
+        \item \(\emptyset,X\)闭 \\
+        \item 闭集任意交封闭 \\
+        \item 闭集有限并封闭
+    \end{enumerate}
+\end{theorem}
+\begin{note}
+    上述定义利用:公式:
+    \begin{enumerate}
+        \item \({(\bigcap A_{\lambda})}^{c}=\bigcup(A_{\lambda}^{c})\) \\
+        \item \({(\bigcup A_{\lambda})}^{c}=\bigcap(A_{\lambda}^{c})\)
+    \end{enumerate}
+\end{note}
+\begin{definition}
+    对于拓扑空间\(x,\tau\),\(a \subseteq X,\tau \in A\),如果存在一个开集U,s.t \(x \in U \subseteq A\),则称x是A的一个内点，A是X的一个邻域。
+    A的所有内点称为A的内部，记作\(A^{o}\)
+\end{definition}
+\begin{corollary}
+    \begin{enumerate}
+        \item 若\(A \subseteq B\)，则\(A^{o}\subseteq B^{o}\) \\
+        \item \(A^{o}\)是包含于A的最大的开集\\
+        \item A是开集 \(\Longleftrightarrow \) \(A=A^{o}\) \\
+        \item \({\left(A \cap B\right)}^{o} = {A}^{o}\cap {B}^{o}\)\\
+        \item \({\left(A \cup B\right)}^{o} \supseteq A^{o}\cup B^{o}\)
+    \end{enumerate}
+\end{corollary}
+\begin{proof}
+    证明命题1: 对于\(\forall x\in A^{o}\) 存在开集u ,s.t \(x \in u \subseteq A \subseteq B\),则 \(x \in \subset B^{o}\)
+    即\(A^{o} \subset b^{o}\) \\
+    证明命题2: 记\(\mathbf{U}=\left\{u,\text{u是开集},u\subset A\right\}\),命题等于证 \[\bigcup_{u \in \mathbf{U}}u=A^{o}\]
+    可以使用”两边夹“方法： \\
+    先证明: \(\bigcup_{u \in \mathbf{U}}u \supseteq A^{o}\) : 任取\(x_0 \in A^{o}\)，根据定义有 \[\exists u_i , x_O \in U_i \subseteq A \]
+    即\(u_i \in \mathbf{U}\),因而 有:\[x_0 \in u_i \subseteq \bigcup_{u \in \mathbf{U}}u\]
+    再证明: 只需要每个\(u_i \in \mathbf{U}\),有 \(u_i \subseteq A^{o}\) 对 \(\forall x \in u_i\),则
+    \[u_i \subseteq A \quad \text{则} x_0 \in A ^{o}\] \\
+    证明命题3: 命题3是命题2的推论，可以直接得到. \\
+    证明命题4:1.\({\left(A \cap B\right)}^{o}\subseteq A^{o} \quad {\left(A \cap B\right)}^{o}\subseteq B^{o}\)从而有 
+    \[{\left(A \cap B\right)}^{o}\subseteq A^{o}\cap B^{o}\]
+    2.\(A^{o}\cap B^{o} \subseteq A \cap B\)和\({\left(A^{o}\cap B^{o}\right)}^{o}\subseteq {\left(A\cap B\right)}^{o}\)
+    从而命题4得证
+    证明命题5:方法同命题4类似，略.
+\end{proof}
+\begin{note}[命题四]
+    \begin{enumerate}
+        \item \({\left(\bigcap_{k=1}^{n} A_k\right)}^{o}=\bigcap_{k=1}^{n}{A_k}^{o}\)\\
+        \item \({\left(\bigcap_{k=1}^{\infty} A_k\right)}^{o} \subseteq \bigcap_{k=1}^{\infty}{A_k}^{o}\)
+    \end{enumerate}
+\end{note}
+\begin{note}
+    何为最大性，它是最大的，比任何具有相同性质的都大。 那么对于开集的最大性就有: \\
+    指任意包含于A的开集\(\varpi\) 有
+    \[\varpi \subseteq A^{o} =\bigcup_{u \in \mathbf{U}} u\]
+    这是接触到的第一个新事物，在刚开始学习拓扑学中，应该一步步地严谨证明。
+\end{note}
+\begin{definition}
+    \( \left(x,\tau\right) \quad A \subseteq X \quad x \in X\) 如果x的任意邻域都包含\(A \setminus \left\{x\right\}\)的点,则称x是A的一个聚点,A的聚点的全体组成的集合叫做A的导集\(A^{'}\),记A的闭包为\(\overline{A}=A \cup A^{'}\)
+\end{definition}
+\(x \in \overline{A} \Leftrightarrow x \in A 或 x\in A^{'} \Leftrightarrow x的任意邻域与A交非空\)
+\begin{definition}[边界点]
+    \(\partial\),x是A的边界点,如果x的任一邻域,既与A交非空，又与\(A^{c}\)交非空.
+\end{definition}
+\begin{exercise}
+    \[A=A^{o}\cup \partial A ? \quad \partial A \text{闭}? \quad A^{'} \text{闭} ?\]
+\end{exercise}
+\begin{proof}
+    \({\partial A }^c =A^o \cup {\left(A^c\right)}^o\)
+\end{proof}
+\subsection*{闭集}
+\begin{corollary}
+    \begin{enumerate}
+        \item 若\(A \subseteq B\),则 \(\overline{A} \subseteq \overline{B}\) \\
+        \item \(\overline{A}\)是包含A的最小的闭集。\(\left(\text{等价于： 所有包含A的闭集的交}\right)\) \\
+        \item \(A = \overline{A} \Longleftrightarrow \text{A是闭集} \) \\
+        \item \(\overline{A \cup B} = \overline{A} \cup \overline{B}\) \\
+        \item \(\overline{A \cap B} \subseteq \overline{A} \cap \overline{B}\)
+    \end{enumerate}
+\end{corollary}
+\begin{proof}
+    证明方法同开集性质证明方法.
+\end{proof}
+\begin{corollary}
+    \(\left(x,\tau\right)\),\(A \subseteq X\)，则\[{\overline{A}}^{c}={\left(A^c\right)^{o}} \qquad {A^o}^c=\overline{A^c}\]
+\end{corollary}
+\begin{proof}
+    由\(x \in \mathbb{C}\)可知,存在x的一个邻域u使得 \[u \in A^c \Longleftrightarrow x \in {A^c}^o\]
+\end{proof}
+\begin{note}
+    上述的证明实际上没有难度，重要的是掌握这种方法，并熟练地运用和准确地写出这些过程
+\end{note}
+\begin{example}
+    \(X=\left\{a,b,c\right\} \quad \tau=\left\{\emptyset,X,\left\{a\right\}\right\}\)
+    ,\(A = \left\{a\right\} \quad B=\left\{b\right\}\)
+\\
+    那么 \[A^o=\left\{a\right\},\overline{A}=X,A^{'}=\left\{b,c\right\},\partial A =\left\{b,c\right\}\]
+\end{example}
+\begin{definition}
+    对于拓扑空间\(\left(X,\tau \right) \quad A \subseteq X\)，如果\(\overline{A}=X\)，则称A是稠密的 
+\end{definition}
+\begin{definition}
+    如果X存在一个可数稠密子集,就称X是可分的
+\end{definition}
+\begin{example}
+    n维欧氏空间\(E^n\)是可分,因为有理数集是稠密的，且有理数集可数. \\
+    余有限拓扑\(\mathbb{R},\tau_f\)可分.\\
+    \(\mathbb{R},\tau_c\),不可分
+\end{example}
+\subsection*{稠密集}
+\begin{proof}
+    对于余有限拓扑，任取一个有限子集A,自然的 \[\overline{A}=\mathbb{R}\]
+    则余有限拓扑是可分的
+    对于余可数拓扑,任取一个可数子集A，自然地\[\overline{A}=A \nsubseteqq R\]
+    则余可数拓扑是不可分的
+\end{proof}
+\begin{corollary}
+    对于拓扑空间\(\left(X,\tau\right) \quad A \subseteq X\),
+    \[\text{A稠密 } \Longleftrightarrow \text{A与X的任一非空开集子集交非空}\]
+\end{corollary}
+\begin{proof}
+   \(\Rightarrow \) 反证法:
+    若不然,则 \[\overline{A} \subseteq u^c \neq X\]
+    与A是稠密的矛盾，充分性得证.\\
+    \(\Leftarrow \)反证法:
+    若\(\overline{A} \nsubseteqq X\)，娜美\({\left(\overline{A}\right)}^c\)非空开集且与A不交，故而矛盾，则必要性得证.
+\end{proof}
+\begin{example}
+    \(A=\left\{x=\left(x_1,x_2,x_3 \dots x_n\right)\in {\mathbb{E}}^n,x_k \in \mathbb{Q} k=1,2,3 \dots,n\right\}\)
+    则\[\overline{A}={\mathbb{E}^n}\]
+\end{example}
+\begin{proof}
+    对于\({\mathbb{E}}^n\)来说，都有任意的一个圆形邻域交A非空，由于有理数集的稠密性，根据上述命题可得：\[\overline{A}={\mathbb{E}}^n\]
+\end{proof}
+\subsection*{序列收敛}
+首先介绍欧氏度量:\(\left(x,d\right)\),对于序列\(x_n \rightarrow x\),对于\(\forall \varepsilon >0\)
+\[\exists N > 0 ,\text{使得} n > N \quad d(x_n,x) < \varepsilon\]
+能不能用更拓扑的语言的说明欧氏空间上的序列收敛呢？\\
+对于拓扑空间\(\left(X , \tau\right)\),称\(x_n \rightarrow x\),如果对于x的任一邻域u，有\(\exists N >0 \text{使得} \)
+\[x_n \in u\]
+\begin{note}
+    注意在数学分析中常用的Cauchy序列不是一个拓扑上的概念，它依赖度量.
+\end{note}
+\begin{example}
+    对于余有限拓扑\(\mathbb{R} , \tau_f\),\(\forall x \in \mathbb{R}\)有\[x_n \rightarrow x\]
+\end{example}
+\begin{proof}
+    取x的任一邻域u，使得\[u=\mathbb{R}-\left\{y_1,y_2,\dots y_n\right\}\]
+    那么\(\exists N , n>N x_n \notin \left\{y_1,y_2 \dots y_n\right\}\),则\(x_n \in U\)
+\end{proof}
+\begin{example}
+    对于余可数拓扑\(\mathbb{R},\tau_c\),若\(x_n \rightarrow x \quad \exists N > 0 \text{使得} n> N \text{时} x_n \in x\)
+\end{example}
+\begin{proof}
+      令\(U=\mathbb{R}-\left({\left\{x_n\right\}}^{\infty}_{n=1} - \left\{x\right\}\right)\) 
+     从而得到x的邻域U，则自然地可知:
+     \[x_n = x\]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+\end{proof}
+在欧氏空间中\(x \in A^{'}\)，则存在A中点列\(x_n\)使得\(x_n \rightarrow x\)，但在一般拓扑空间中，上述结论不成立。下面给出例子
+\begin{example}
+    \(\left(\mathbb{R},\tau_c\right)\),取A为\(\mathbb{R}\)的一个不可数真子集，\(\left(\text{比如无理数集S}\right)\)
+\end{example}
+\begin{proof}
+    \(\overline{A}=\mathbb{R}\)，取\(x \in \left(\overline{A}-A\right) \subseteq A^c\),则不存在A中序列收敛到x。
+\end{proof}
+对于拓扑空间\(\left(X , \tau\right) \quad A \subseteq X\)那么有
+\[\tau_A=\left\{U \cap A ; U \in \tau\right\}\]
+则\(\tau_A\)是A的一个拓扑.称\(\tau_A\)是A上的限制拓扑，同时称\(\left(A,\tau_A\right)\)为子空间
+\section{连续映射与同胚映射}
+连续映射在拓扑学中的地位十分显著，应好好学习.
+\subsection*{连续映射的定义}
+连续映射仍旧保持其在数学分析中的特性：这是一个局部性的定义。
+\begin{definition}
+    设X与Y是拓扑空间，有映射\(f:X\rightarrow Y\) 对于\(x\in X \),如果对于Y中\(f(x)\)的任一邻域V，\(f^{-1}(V)\)总是x的邻域，则称f在x处连续
+\end{definition}
+\begin{corollary}\label{C:1}
+    映射\(f:X\rightarrow Y\),A 是X的子集，\(x \in A \),记\(f\mid_A\)是f在A上的限制映射。则： 
+    \begin{itemize}
+        \item(1) 如果 f在x连续，则\(f_A\)在X也连续\\
+         \item （2） 若A是x的邻域，则当 \(f_A在x\)连续时 ,f在x也连续
+    \end{itemize}
+\end{corollary}
+注意看，（2）表现了连续映射的局部性。同时我也给出连续映射在全局和局部之间的转化定义: 
+\begin{definition}
+    如果映射\(f: A \rightarrow B \)在任一点\(x \in X \)都连续，则称 f是连续映射.
+\end{definition}
+\begin{theorem}
+    设\(f: X \rightarrow Y \)是连续映射，则下述命题等价： 
+    \begin{enumerate}
+        \item f 是连续映射  \\
+        \item 对于Y中的任一开集的原像是X的开集 \\
+        \item 对于Y中的任一闭集的原像是X的闭集
+    \end{enumerate}
+\end{theorem}
+下面给出开（闭）映射的定义，开（闭）映射在拓扑学中大多数充当”桥梁“的作用：
+\begin{definition}
+    映射\(f: X \rightarrow Y \)称为开（闭）映射，如果f把X的开（闭）集映为Y的开（闭）集    
+\end{definition}
+\begin{note}
+    开映射不一定是闭映射，闭映射也不一定是开映射
+\end{note}
+\begin{note}
+    虽然在拓扑空间中，我们仍将序列收敛纳入考虑，但是指明的是： 序列收敛不能得到连续映射，但是连续映射可以得到序列收敛。
+\end{note}
+\subsection*{连续映射的性质}
+\begin{corollary}
+    设X，Y和Z都是拓扑空间，映射 \(f: X \rightarrow Y\)在x处连续，\(g: Y \rightarrow Z \)在 \(f(x)\)处连续，则复合映射\(g*f: X \rightarrow Z \)在x处连续 .
+\end{corollary}
+由上述命题可以推得：两个连续映射的复合也是连续映射，进而可知命题\ref{C:1} 可以根据此有不同的证明方法。
+设\(\mathscr{C} \subset 2^x\)是拓扑空间\(\mathrm{X}\) 的子集族，称\(\mathscr{C}\)是\(\mathrm{X}\)的一个覆盖，如果\(\bigcup_{c \in \mathscr{C}} c = \mathrm{X}\)(即\(\forall x \in X \)至少包括在\(\mathscr{C}\) 的一个成员中），如果覆盖\(\mathscr{C}\)的每个成员都是开（闭）覆盖，则称\(\mathscr{C}\)为开（闭）覆盖；覆盖\(\mathscr{C}\)只包含有限个成员时，称\(\mathscr{C}\)是有限覆盖。
+\begin{theorem}[粘结引理]\label{粘结引理}
+设\(\left\{A_1,A_2.\dots A_n \right\}\) 是X的一个有限闭覆盖，如果映射\(f: X \rightarrow Y\)在每个\(A_i\) 上的限制都是连续的，则f是连续映射.
+\end{theorem}
+\begin{note}
+    粘结引理有一个更弱一些要求的定理; 设\(\left\{A_1,A_2.\dots A_n \right\}\) 是X的一个有限开覆盖，如果映射\(f: X \rightarrow Y\)在每个\(A_i\) 上的限制都是连续的，则f是连续映射.通常情况下:我们使用这一定理多于粘结引理.
+\end{note}
+粘接引理是判断映射连续性的一种有效方法，它还是分片地构造连续映射的依据．
+\subsection*{同胚映射}
+\begin{definition}
+    如果\(f: X \rightarrow Y \)是一一对应，并且f及其逆\(f^{-1} : Y \rightarrow X \)都是连续的，则称f是一个同胚映射，或称拓扑变换，或简称同胚，当存在X到Y的同胚映射时，就称X与Y同胚，记作\(X \cong Y \)
+\end{definition}
+\begin{note}
+    需要注意的是，当f是一一对应且连续时，\(f^{-1}\) 不一定是连续的，我们仍然需要验证其连续性。
+\end{note}
+在全体拓扑空间集合内的同胚关系是一个等价关系，其自反性，对称性与传递性分别由：恒同映射\(id : X \rightarrow X \)是永沛映射；f 是同胚映射，则\(f^{-1}\)也是同胚映射，两个同胚映射的复合也是同胚映射可推得。
+\begin{definition}
+    如果\(f: X \rightarrow Y \)是单的连续映射，并且\(f: X \rightarrow f(X)\)是同胚映射,就称\(f: X  \rightarrow Y \)是嵌入映射
+\end{definition}
+\begin{definition}
+    拓扑空间的在同胚映射下保持不变的概念称为拓扑概念，在同胚映射下保持不变的性质叫拓扑性质
+\end{definition}
+\begin{note}
+    由于开集概念在同胚映射下是保持不变的（留作练习） 它是拓扑性质，因此由它推出的闭集、闭包、邻域、内点等概念也是拓扑性质。
+\end{note}
+\subsection*{连续映射常用定理}
+主要介绍一些在常见教材中并未提到的或者在练习题中提到的常用定理(不给出证明，留作练习）：
+\begin{theorem}
+  设\(f: X \rightarrow Y \)是映射，则下述条件相互等价
+    \begin{enumerate}
+    \item f是连续映射 \\
+    \item 对X的任何子集A ： \(f(\overline{A}) \subset \overline{f(A)}\) \\
+    \item 对Y的任何子集B ： \(\overline{f^{-1}(B)} \subset f^{-1}(\overline{B})\)
+    \end{enumerate}
+\end{theorem}
+\begin{theorem}
+    设B是Y的子集， \(i : B \rightarrow Y \)是包含映射,\(f: X \rightarrow B \)是一映射，证明f连续\(\Leftrightarrow\) \(i * f : X \rightarrow f : X \rightarrow Y \) 连续
+\end{theorem}
+\begin{theorem}
+    设\(f: X \rightarrow Y \)是满的连续映射，其中X是可分的。则Y也是可分的
+\end{theorem}
+\begin{theorem}
+    如果\(f: X \rightarrow Y \)是一一对应，则f是开映射 \(\Leftrightarrow\)f是闭映射\(\Leftrightarrow f^{-1}\)连续
+\end{theorem}
+\begin{theorem}
+   设(X ,d) 是度量空间，A是X的非空闭集，规定\(f: X \rightarrow E_1\)为\(f(x)= d (x,A) = \inf\left\{d(x,a)| a \in A \right\}\),则f是连续的且\
+ \[f(x) = 0 \Leftrightarrow x \in  A \]
+\end{theorem}
+\section{乘积空间与拓扑基}
+设\(\mathscr{B}\)是X的一个子集族，规定新子集族：
+\begin{align}\label{拓扑基定义}
+    \overline{\mathscr{B}} :&= \left\{U \subset X | U \text{是} \mathscr{B} \text{中若干成员并集}\right\} \\
+    &=\left\{ U \subset X | \forall x \in U ,\text{存在} B \in \mathscr{B},\text{使得} x \in B \subset U \right\}
+\end{align}
+称\(\overline{\mathscr{B}}\) 为\(\mathscr{B}\)所生成的子集族，显然\(\mathscr{B} \subset \overline{\mathscr{B}}, \emptyset \in \overline{\mathscr{B}}\)
+设\(X_1\)和\(X_2\)是两个集合，记\(X_1 \times X_2\)为它们的笛卡尔积， 规定如下映射: \\ 
+\(j_1: X_1 \times X_2 \rightarrow X_i \)为\(j_i(x_1,x_2) = x_i \quad (i=1.2)\) ,称\(j_i\)为\(X_1 \times X_2 \)到\(X_i\)的投影，如果\(A_i \subset X_i \quad (i=1,2)\), 则\(A_1 \times A_2 \subset X_1 \times X_2\) ,容易验证：当\(A_i \subset X_i,\quad B_i \subset X_i \quad (i=1,2)\)时，\begin{align}
+    (A_1 \times A_2) \cap (B_1 \times B_2) = (A_1 \cap B_1 ) \times (A_2 \cap B_2) 
+\end{align}
+\begin{note}
+    需要注意的是： 对于”并集“运算，类似等式不成立。
+\end{note}
+\subsection*{乘积空间}
+设 \((X_1,\tau_1)\)和 \(X_2,\tau_2\)是两个拓扑空间，现在要在笛卡尔积\(X_1 \times X_2\),上规定一个与\(\tau_1,\tau_2\)密切相关的拓扑\(\tau\),具体地说，\(\tau\)要使\(j_1\)和\(j_2\)都连续，并且是满足此要求的最小拓扑 . 考察\(\tau \),\\
+对于 \(\forall U_i \in \tau_i\),由于\(j_i\)连续，\(j_i^{-1} (U_i) \in \tau \),若\(U_1 \in \tau_1 \quad U_2\ \in \tau_2\)，则\begin{align}
+    U_1 \times U_2 = (U_1 \times X_2) \cap (X_1 \times U_2) = j_1^{-1}(U_1) \cap j_2^{-1}(U_2) \in \tau  
+\end{align}
+因此对于笛卡尔积的子集\(\mathscr{B} = \left\{U_1 \times U_2 | U_i \in \tau_i \right\} \),则要构造的拓扑 \(\tau\)包含\(\mathscr{B}\),根据拓扑公理，\(\tau\)也一定包含\(\overline{\mathscr{B}}\),因此\(\tau\)是包含\(\overline{\mathscr{B}}\)的最小拓扑.
+\begin{corollary}
+    \(\overline{\mathscr{B}}\)是\(X_1 \times X_2\) 上的一个拓扑
+\end{corollary}
+上述命题说明: \(\tau = \overline{\mathscr{B}}\)
+\begin{definition}
+    称 \(\overline{\mathscr{B}}\)为 \(X_1\times X_2\)上的乘积拓扑,称\((X_1 \times X_2 ,\overline{\mathscr{B}}\)为\((X_1,\tau_1)\)和\(X_1,\tau_2\)的乘积空间，简记为\(X_1 \times X_2\)
+\end{definition}
+\begin{example}
+    用类似的方法规定有限个拓扑空间\(X_i,\tau_i \quad (i=1,2,3 \dots , n )\)的乘积空间\(X_1 \times X_2 \times X_3 \times \dots \times X_n\),它们的拓扑由\(\mathscr{B}=\left\{U_1 \times U_2 \times U_3 \times \dots \times U_n| U_i \in \tau_i ,\quad i= 1,2,3,\dots ,n \right\}\)，所生成.
+\end{example}
+\subsection*{乘积空间的性质}
+由乘积拓扑的定义直接得到投射\(j_i : X_1\times X_2 \rightarrow X_i\)的连续性,\(j_i\)是开映射,设Y是任一拓扑空间，\(f:Y \rightarrow X_1 \times X_2\) 是一映射，称\(f_i = j_i \circ f : Y\rightarrow X_i \quad (i=1.2)\) 为f的两个分量（映射），于是f与它的两个分量相互决定.
+\begin{theorem}
+    对于任何拓扑空间Y和映射\(f: Y \rightarrow X_1 \times X_2\),f连续 \(\Leftrightarrow \) f的分量都连续.
+\end{theorem}
+对于任何多个拓扑空间的乘积空间（无穷情形用乘积拓扑）定理同样成立，还可证明，\(X_1 \times X_2\)上使定理能成立的拓扑只有乘积拓扑。
+\begin{lemma}
+    \(\forall b \in X_2\)，由\(x \mapsto (x,b) \)规定的映射\(j_b : X_1 \rightarrow X_1 \times X_2\)是嵌入映射 
+\end{lemma}
+\subsection*{拓扑基}
+乘积拓扑是用一个特定的子集族生成的，这种规定拓扑的方法在度量空间中已经使用过，拓扑基就是从其中抽象出的一个一般性概念。
+\begin{definition}
+    称集合X的子集族\(\mathscr{B}\)为集合X的拓扑基，如果\(\overline{\mathscr{B}}\)是X的一个拓扑；称拓扑空间\(（X，\tau ) \)的子集族\(\mathscr{B}\)为这个拓扑空间的拓扑基,如果\(\overline{\mathscr{B}}= \tau\)
+\end{definition}
+\begin{note}
+    这里应该注意区分拓扑基在集合和拓扑空间之间的区别： 拓扑基在集合下的定义只是要求它是集合的一个拓扑，而在拓扑空间下的定义要求它是拓扑空间本来的拓扑。
+\end{note}
+\begin{corollary}
+    \(\mathscr{B}\)是集合X的拓扑基的充分必要条件是： 
+    \begin{enumerate}
+        \item \(\bigcup_{B \in \mathscr{B}} = X \) \\
+        \item 若\(B_1,B_2 \in \mathscr{B} \text{则} B_1\cap B_2 \in \overline{\mathscr{B}}\)
+    \end{enumerate}
+\end{corollary}
+并且如果两个拓扑基\(\mathscr{B}_1,\mathscr{B}_2\)生成的拓扑相同，则称这两个拓扑基\(\mathscr{B}_1,\mathscr{B}_2\)是等价的。
+\begin{corollary}
+    \(\mathscr{B}\)是拓扑空间\((X ,\tau )\)的拓扑基德充分必要条件为；
+    \begin{enumerate}
+        \item \(\mathscr{B} \subset \tau \) (即\(\mathscr{B}\)的成员是开集）；\\
+        \item \(\tau \subset \overline{\mathscr{B}}\) (即每个开集都是\(\mathscr{B}\)中一些成员的并集)
+    \end{enumerate}
+\end{corollary}
+\begin{corollary}
+    若\(\mathscr{B}\)是\((X,\tau)\)的拓扑基，\(A \subset X\) 规定 \(\mathscr{B}_A := \left\{A \cap B | B \in \mathscr{B}\right\}\)，则它是A的子集族同时是\((A,\tau_A)\)的拓扑基.
+\end{corollary}
+\begin{theorem}
+    设\(\mathscr{B}\)是拓扑空间X的拓扑基，\(x \in A \subset X \)，则A是x的邻域\(\Leftrightarrow\) 存在 \(B \in \mathscr{B}\),使得 \(x \in B \subset A \)。
+\end{theorem}
+于是我们可以利用上述定理刻画许多定义.
+\begin{example}\begin{enumerate}
+    \item x是A的聚点  \(\Leftrightarrow\) \(\mathscr{B}\)中每个包括x的成员与\(A \ \left\{x\right\}\)有交点； \\
+   \item  x\(\in \overline{A}\) \(\Leftrightarrow\) \(\mathscr{B}\)中每个包括x的成员与 A 有交点\\
+    \item \(f: Y \rightarrow X \)连续 \(\Leftrightarrow\) \(\forall B \in \mathscr{B} \) ,\(f^{-1}(B)\)是Y的开集.
+    \end{enumerate}
+\end{example}
+\subsection*{拓扑基的重要性质}
+\begin{theorem}
+    设A，B分别是X，Y的闭集，则\(A \times B \)是乘积空间\(X \times Y\)的闭集
+\end{theorem}
+\begin{theorem}
+    设\(A \subset X , B \subset Y \),则在乘积空间\(X \times Y\)中:
+    \begin{enumerate}
+        \item \(\overline{A \times B}= \overline{A} \times \overline{B}\) \\
+        \item \((A \times X )^{o} = A^{o} \times B^{o}\)
+    \end{enumerate}
+\end{theorem}
+\begin{theorem}
+    设X与Y都是可分空间，则\(X \times Y \)也是可分空间
+\end{theorem}
+\begin{theorem}
+    设\(\mathscr{C}\) 是X的一个覆盖，规定X的子集族,\(\mathscr{B} = \left\{B | B是 \mathscr{C}\text{中有限个成员的交集}\right\}\),则\(\mathscr{B}\)是集合X的一个拓扑基.(称\(\mathscr{C}\)是\(\mathscr{B}\)的子拓扑基。）
+\end{theorem}
+
+
+
+
+

@@ -1,0 +1,178 @@
+\chapter{预备知识}
+在正式学习拓扑学前，需要介绍一些前置内容，这些内容包括：集合论，复变函数等等内容。但是必须承认的是，如果你并没有这些知识，仍可以很愉快地学习拓扑学这门学科，因为本质上来将，拓扑学是独立于之前学科的。
+\section{集合论}
+本节所讲述的集合论主要包括三部分：集合运算、开（闭）集、映射：
+\subsection*{集合运算}
+集合之间的运算主要包括：交、并、差以及一些重要定理:
+\begin{definition}
+    若一些元素依据某种规则排列在一起，则称这些元素组成的排列称为集合
+\end{definition}
+\begin{definition}
+    设两个集合\(A,B\),则有如下运算
+    \begin{align}
+        A\cap B :=\left\{x | x \in A \textbf{并且} x \in B \right \} 
+    \end{align}
+    这样的运算称为集合的交,记这种运算为\(\bigcap\)
+\end{definition}
+\begin{definition}
+    设两个集合\(A,B\),有如下运算
+    \begin{align}
+        A \cup B:= \left\{x | x \in A \textbf{或者} x \in B  \right\}
+    \end{align}
+    这样的运算称为集合的交， 记这种运算为\(\bigcup\)
+\end{definition}
+\begin{definition}
+    设两个集合\(A,B\),有如下的运算
+    \begin{align}
+        A-B := \left\{ x | x \in A , x \notin B  \right\}
+    \end{align}
+    这样的运算称为集合的差，记这种运算为\(- \)
+\end{definition}
+下面给出这三种运算的常见性质：
+\begin{theorem}
+    交与并有分配律
+    \begin{align}
+        A \cap (B \cup C) &=(A \cup C) \cap (A \cup B) \\
+        A \cup(B \cap C) &= (A\cap C) \cup (A\cap B)
+    \end{align}
+\end{theorem}
+\begin{theorem}
+    交，并，差之间的关系
+    \begin{align}
+        A-B= A\cap B^c
+    \end{align}
+\end{theorem}
+下面介绍一个重要定理： De.Morgan律
+\begin{theorem}
+    \begin{align}
+        B - (\bigcup_{i \in \Lambda} A_i)&=\bigcap_{i \in \Lambda}(B - A_i) \\
+        B-(\bigcap_{i \in \Lambda} A_i)&=\bigcup_{i \in \Lambda}(B-A_i)
+    \end{align}
+    需要说明的是：这是广泛的De.Morgan律，如果令\(B= \textbf{全集}\),就是我们常见的形式.
+\end{theorem}
+上述就是集合运算的大致内容。
+\subsection*{映射}
+\begin{definition}
+    设X与Y都是集合，映射\(f: X \rightarrow Y \)是一个对应关系，使得\(\forall x \in X\),对应着Y中的一点\(f(x)\)(称为x的像点）
+    若\(A \subset X \), 记\(f(A) := \left\{f(x) | x \in A \right\}\)是Y的一个子集，称为A在f下的像,若\(B \subset Y \)，记\(f^{-1}(B) := \left\{x \in X|f(x) \in B \right\} \) ，称为B在f下的完全原像（或者简称原像）。
+\end{definition}
+那么若当\(f(X)=Y\)时，我们称映射\(f\)是满射,若X中不同的点对应的像点均不同，则称映射\(f\)是单射，既单又满的映射称为一一映射.在一一映射的情形下： \(f\)有逆映射，我们记为\(f^{-1}\),同时对于\(\forall B \subset Y，f^{-1}(B))\)有两种理解：\(B\)在\(f\)下的原像；\(B\)在\(f^{-1}\)下的像，它们的意义是一致的.
+\\
+关于f下的像与原像有如下的定理: 
+\begin{theorem}
+\[
+\begin{array}{l}
+ \textbf{(1)}  {f^{-1}\left(\bigcup_{\lambda \in \Lambda} B_{\lambda}\right)=}=\bigcup_{\lambda \in \Lambda} f^{-1}\left(B_{\lambda}\right) ; \\
+\textbf{(2)} {f^{-1}\left(\bigcap_{\lambda \in \Lambda} B_{\lambda}\right)=\bigcap_{\lambda \in \Lambda} f^{-1}\left(B_{\lambda}\right) ;} \\
+\textbf{(3)} f^{-1}\left(B_{c}\right)=\left(f^{-1}(B)\right) c ;\\
+\textbf{(4)} f^{-1}(B \backslash D)=f_{-1}(B) \backslash f_{-1}(D) ;\\
+\textbf{(5)}  f\left(\bigcup_{\lambda \in A} A_{\lambda}\right)=\bigcup_{\lambda \in \Lambda} f\left(A_{\lambda}\right) ;\\
+\textbf{(6)}  f\left(\bigcap_{\lambda \in \Lambda} A_{\lambda}\right) \subset \bigcap_{\lambda \in \Lambda} f\left(A_{\lambda}\right) , \textbf{当f单时为相等} ;\\
+\textbf{(7)} f\left(f^{-1}(\right.  B )  ) \subset B  ，\textbf{当f满时为相等} ;\\
+\textbf{(8)}  f^{-1}(f(A)) \supset A  ，\textbf{当f单时为相等}.\\
+\end{array}
+\]
+设\(f: X \rightarrow Y \)和\(g: Y \rightarrow Z \)都是映射，f与g的复合（或称乘积）是X到Z的映射，记作\(g*f : X \rightarrow Z \)，规定为\(g * f(x) =g(f(x)) \quad \forall x \in X \)则有: 
+\[\begin{array}{l}
+     \textbf{(9)} g*f(A) = g(f(A)) \\
+      \textbf{(10)} (g*f)^{-1}(B)=f^{-1}(g^{-1}(B))
+\end{array}\]
+\end{theorem}
+集合X到自身的恒同映射（保持每一个点不变）记作\(id_X : X \rightarrow X \)(常简记为id),若\(f: X \rightarrow Y\)是映射，\(A \subset X\)，规定f在A上的限制为\(f|A: A \rightarrow Y , \quad x \in A \),\(f|A(X)=f(x) \quad x \in A \) 记\(i: A \rightarrow X\)为包含映射，即\(\forall x \in A , \quad i(x)=x \),于是，\(i = id|A , f|A=f*i\) 
+\subsection*{邻域与开集}
+\begin{definition}
+    若对于集合A中的一个点a，存在另一个集合B 有：\[a \in B \subset A\]
+    那么称B是a的领域
+\end{definition}
+\begin{definition}
+    若对于\(\forall a \in A \)，a的所有邻域均在A的内部，那么称A是开集
+\end{definition}
+\subsection*{笛卡尔积与等价关系}
+\begin{definition}
+    设\(X_1 ,X_2\)都是集合，称集合\begin{align}
+        X_1 \times X_2 := \left\{\textbf{有序偶}(x,y)| x\in X ,y\in Y\right\}
+    \end{align}
+    为`\(X_1,X_2\)的笛卡尔积，称x和y为\((x,y)\)的坐标 .\\
+    同样地，对于n个集合的笛卡尔积\(X_1 \times X_2 \times X_3 \times \dots \times X_n\)可以类似地定义.记作\(X^n=X \times X \times X \times \dots \textbf{n个X}\) 
+\end{definition}
+\begin{definition}
+    集合X上的一个关系R是\(X \times X \)的一个子集，当\((x_1,x_2) \in R \)时，说\(x_1\)与\(x_2\)R相关，记作\(X_1 R x_2\)
+\end{definition}
+集合X的一个关系R称为等价关系，如果满足 : \[
+\begin{array}{l}
+ (1) \text{自反性}:\quad \forall x \in X \quad \text{都有}xRx     \\
+ (2) \text{对称性} :\quad \text{若} x_1Rx_2\quad \text{则} x_2 R X_1                    \\
+ (3)  \text{传递性} :\quad \text{ 若} x_1Rx_2,x_2Rx_3 \quad \text{则} x_1Rx_3                              \\     
+\end{array}
+\]
+我们通常记等价关系为\(\sim\) 表示，例如 将\(x_1Rx_2\) 记作\(x_1 \sim x_2\)
+当X上有等价关系\(\sim\) 时，可以将X分为多个等价类（互相等价的点属于的同一个集合）称为X关于\(\sim\)的商集，\(\forall x \in X \)所在等价类记作\(<x>\),因此\begin{align}\label{等价类定义}
+    X/\sim := \left\{<x> | x \in X \right\}
+\end{align}
+\section{复变函数}
+\subsection*{曲线}
+\begin{definition}
+    从有限闭区间\(\left[a,b\right]\)到复平面\(\mathbb{C}\)中的连续映射
+    \[\gamma :z(t): \left[a,b\right] \rightarrow \mathbb{C}\]
+    称为是复平面上的连续曲线，其中\(z(a)\)称为曲线 \(\gamma\) 的起点，\(z(b)\) 称为曲线 \(\gamma\) 的终点，若\(z(a)=z(b)\)
+    称 曲线 \(\gamma\) 为连续闭曲线 。
+\end{definition}
+\begin{remark}
+    曲线是一种映射关系，看曲线是否是一样的关键不在于看曲线的像是否一致而是观察它们之间的对应关系（法则）是否相同。
+    同时的，也可以将曲线看作一段时间内，点在空间中做运动的一种形式（如：布朗运动（感兴趣可以Google：G-布朗运动，导向随机微分方程）
+\end{remark}
+\begin{definition}[不相交曲线]
+    连续曲线：\(z(t): \left[a,b\right] \rightarrow \mathbb{C}\)称为是简单的，如果对于任何的\(t_0 \neq t_1 \)
+    \[t_0,t_1 \in [a,b) \text{或} (a,b] \text{均有} z(t_0)=z(t_1) , \text{即其除了端点（即起点和终点）以外不自交}\]
+\end{definition}
+不相交曲线又称作Jordan曲线
+\begin{definition}[光滑曲线]
+    如果\({\gamma(t)}^{'}={x(t)}^{'}+i{y(t)}^{'}\)存在，连续，则称\(\gamma(t)\)为光滑曲线
+\end{definition}
+\begin{theorem}[Jordan定理]
+    设\(\gamma \subset \mathbb{C}\)为Jordan曲线，则它把\(\overline{\mathbb{C}}\)分成两个连通区域，其中一个是有界的，称为
+    \(\gamma \)的内部 ，另一个是无界的，称为\(\gamma\)的外部 其中 \(\gamma\)是这两个单连通区域的共同边界
+\end{theorem}
+\begin{lemma}
+    设\(f(t)\)为\(\left[\alpha,\beta\right]\)上的复值函数，那么
+    \[|\int_{\alpha}^{\beta}f(x) dx| \leq \int_{\alpha}^{\beta}|f(x)|dx\]
+\end{lemma}
+考虑如下情形：有两条具有相同起点，终点的曲线，它们可能具有如下的几种情形：1.它们可能是一条直线、2.它们可能距离很远、3.它们可能十分接近。
+这也引出了我们接下来要考虑的：曲线同伦。\\
+先给出曲线同伦的定义
+\begin{definition}
+   设\(\mathbf{E} \in \mathbf{C}\)的一个子集，\(\gamma_1,\gamma_2 \in \mathbf{E}\)是两条起点相同，终点相同的连续曲线，称它们定端同伦，若存在连续映射 \(H: \left[a,b\right] * \left[0,1\right] \rightarrow \mathbf{E}\)
+    满足
+    \begin{enumerate}
+        \item \(H(t,0) =z_0(t) \quad H(t,1)=z_1(t)\) \\
+        \item \(H(a,s)=H(a,0)=H(a,1),H(b,1)=H(b,0)=H(b,s) \quad \forall s \in [0,1]\)
+    \end{enumerate} 
+其中连续映射H通常称作连接两条曲线的同伦映射，记作 \(z_0(t) \mathop{\backsimeq}\limits_H z_1(t)\)
+\end{definition}
+\begin{remark}
+    同伦实际上是一种等价关系，它满足等价关系的三条公理。
+\end{remark}
+\begin{proposition}[验证同伦是等价关系]
+    \begin{enumerate}
+        \item (自反性):对于任意曲线，对其自身都是同伦的。\\
+        \item  (对称性) : 若  \(z_1 \mathop{\backsimeq}\limits_H z_2\),那么 \(z_2 \mathop{\backsimeq}\limits_H z_1\) \\
+        \item (传递性) :若\(z_1 \mathop{\backsimeq}\limits_{H_1} z_2 \quad z_2 \mathop{\backsimeq}\limits_{H_2} z_3\) 证明
+                        \[z_1 \mathop{\backsimeq}\limits_{H_3} z_3\]
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    同伦的自反性，对称性显然。故只证明：同伦的传递性。\\
+    对于\(z_1 \mathop{\backsimeq}\limits_{H_1} z_2 \quad z_2 \mathop{\backsimeq}\limits_{H_2} z_3\)来说,
+    \[\exists H_a \text{使得}H_a=H_1*H_2\] 显然有 \[z_1 \mathop{\backsimeq}\limits_{H_a} z_3\]
+    传递性得证，故同伦是一等价关系。
+\end{proof}
+\section{抽象代数}
+\begin{definition}
+    对于集合A中的元素和运算，若满足: \begin{enumerate}
+        \item 运算满足结合律  \\
+        \item 对于任意属于A的元素，均有元素e ， 有 \( ea = ae = a \) 称元素e为集合A中的幺元 \\
+        \item 对于任意属于A的元素，均有逆元b，有\(ba=ab=e\)
+    \end{enumerate}
+    那么我们称集合A是一个群。
+\end{definition}
+除此之外，如果群A中的运算满足交换律，则称A是一个\(\mathbf{Abel群}\)，在拓扑学中，我们常常使用有限Abel群去计算或者验证某些同胚不变量，因此不熟悉的读者应该立刻翻阅相关资料，在此不再赘述有关内容
