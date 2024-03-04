@@ -1,0 +1,64 @@
+\documentclass[lang=cn,11pt,a4paper]{elegantpaper}
+
+% Rerun LaTeX compilation process
+% to resolve the "Rerun to get /PageLabels entry" error.
+% You may need to run LaTeX multiple times until the error is resolved.
+\date{\zhtoday}
+\title{课程作业}
+\usepackage{array}
+\newcommand{\ccr}[1]{\makecell{{\color{#1}\rule{1cm}{1cm}}}}
+\definecolor{shadecolor}{RGB}{241, 241, 255}
+\newcounter{problemname}
+\newenvironment{problem}{\begin{shaded}\stepcounter{problemname}\par\noindent\textbf{题目\arabic{problemname}. }}{\end{shaded}\par}
+\newenvironment{solution}{\par\noindent\textbf{解答. }}{\par}
+\begin{document}
+\maketitle
+\section{题目}
+    在售猪问题中,对每天的饲养花费做灵敏性分析,分别考虑对最佳售猪时间和相应收益的影响.如果有新的饲养方式,每天饲养花费为60美分,会使猪按7磅/天增重,那么是否值得改变饲养方式?求出使得饲养方式值得改变的最小增重率
+\section{符号说明}
+\[\begin{array}{c|c}
+   \hline \text{符号} & \text{意义} \\
+   \hline t & \text{天数(天)} \\
+    w & \text{猪的重量(磅)} \\ 
+    p & \text{猪的售价(美元/磅)} \\
+    C & \text{饲养t天的花费(美元)} \\
+    R& \text{售出猪的收益(美元)} \\
+    P & \text{净收益(美元)} \\
+    \hline
+\end{array}\]
+\section{灵敏性分析}
+将\(C_t = \frac {C}{t}\)作为独立的参数,所以有\begin{align*}\label{问题SOL.1}
+    y=f(t) &= R - C \\
+    &=(0.65-0.01t)(200+5t) - C_t t \\ 
+    &=130+1.25t-0.05t^2 - C_t t
+\end{align*}
+计算: \[f^{'} (t) = 1.25-0.1t-C_t\]
+使得\(f^{'}(t) = 0\)的点为 \begin{align}\label{题目极点}
+    t = 12.5-10C_t
+\end{align}
+只要\(x \geq 0 \),即只要\(0< C_t \leq 1.25\),最佳的售猪时间和相应收益就由\ref{问题SOL}式和\ref{题目极点}式决定.对于\(C \geq 1.25\),抛物线\(y=f(x)\)的最高点落在我们求最大值的区间\(x \geq 0\)之外,在这种情况下,由于在整个区间\(\left [0,1 \right )\)上都有\(f^{'} <0\)
+所以最佳的售猪时间为\(x =0\)
+\section{是否改变饲养方式}
+计算新的饲养方式的净收益:
+\begin{align*}\label{问题SOL.2}
+    f(t) &=R-C \\ 
+    &=(0.65-0.01t)(200+7t) - 0.60t \\
+    &=130+1.95t-0.07t^2
+\end{align*}
+计算\(f^{'}(t) = 1.95-0.14t\),使得\(f^{'}(x) = 0\)的点为\(t = \frac{195}{14} \approx 13.93\),代回式\ref{问题SOL.2}得到\(f(\frac{195}{14}) \approx 143.5804\).对比之前的最大值133.20,显然当前较高.因此值得改变生产方式. 
+\section{最小增长率}
+引入猪的生长率参数g,则有\begin{align*}
+    f(t) &=R-C \\ 
+    &=(0.65-0.01t)(200+gt)-0.60t\\
+    &=130+(0.65g-2.60)t-0.01gt^2
+\end{align*}
+计算: \[f^{'}(t)=0.65g-2.60-0.02gt\]
+使得\(f^{'}(t) = 0\)的点为\(t_0 = \frac{0.65g-2.60}{0.02g}\) 
+代回公式:
+\begin{align*}
+    f(t_0) &= 130 + (0.65g -2.6)\frac{0.65g-2.60}{0.02g} -0.01g {\frac{0.65g-2.60}{0.02g}}^2 \\ 
+     &=  13\left(13 g^{2} +56 g+208\right) /(16 g)
+\end{align*}
+当上述式子等于133.20时,得到\(g = 5.26\),所以最小增长率为5.26
+
+\end{document}
