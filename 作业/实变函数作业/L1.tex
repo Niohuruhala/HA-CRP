@@ -157,14 +157,14 @@
 7.若A是由非蜕化的开区间组成的不可数无穷集合,则有\(\delta >0\),使A中有无穷多个区间的长度大于\(\delta\).
 \begin{proof}
     (反证法):A中有有限多个区间的长度大于\(\delta\),因此 A中有无穷多个区间小于\(\delta\). 记如下符号:
-    \[B_n :  \left\{x ; |x| < \frac{1}{n} \right\}\]
-    可知\(B_n\)是可数集,因此\[A = \bigcup\limits_{k=1}^{\infty} \quad \text{是可数集}\]
+    \[B_n :  \left\{x ; |x| > \frac{1}{n} \right\}\]
+    可知\(B_n\)是可数集,因此\[A = \bigcup\limits_{k=1}^{\infty} B_n\quad \text{是可数集}\]
     所以,矛盾!
 \end{proof}
 8.如果空间中的长方形\[I = \left\{(x,y,z) ; a_1 < x<a_2 , b_1<y < b_2,c_1<z<c_2\right\}\]
 中的\(a_1,a_2,b_1,b_2,c_1,c_2(a_1< a_2 , b_1 <b_2 ,c_1 <c_2)\)都是有理数,则称I为有理长方体,证明全体有理长方体构成一个可数集合
 \begin{proof}
-    存在如下的一一对应:\[i: I \rightarrow \mathbb{Q}^6 i(I)=(a_1,a_2,b_1,b_2,c_1,c_2)\]
+    存在如下的一一对应:\[i: I \rightarrow \mathbb{Q}^6 \quad i(I)=(a_1,a_2,b_1,b_2,c_1,c_2)\]
     由于定理:\(\mathbb{Q}^6\)是可数集.得证.
 \end{proof}
 \section{不可数集合}
@@ -187,7 +187,7 @@
         \end{cases}
     \end{align}
     所以对于正整数集的任意子集\(A\),考虑A的示性函数可知:
-    \[\prod_{n=1}^{\infty}\varphi_A (n) \in (0,1)\] 
+    \[0.\prod_{n=1}^{\infty}\varphi_A (n) \in (0,1)\] 
     上述映射是正整数集到\((0,1)\)的单射
     所以\(2^a \geq c\)
     另一方面,对于\(\forall x \in (0,1)\),考虑\((0,1)\)中的有理数集\(Q_0\)的子集\(A_x=\left\{r;r\leq x , r\in Q_0 \right\}\),那么上述映射是(0,1)的幂集到\(Q_0\)的单射,因此 \(c \leq 2^a\)
@@ -212,6 +212,7 @@
 \section{上课思考题}
 如果集族\(\left\{A_{\alpha}\right\}_{\alpha \in (0,1)}\)满足\(\overline{\overline{A}}=c\)那么\[\overline{\overline{\bigcup\limits_{\alpha\in (0,1)}A_{\alpha}}}=c\]
 \begin{proof}
+    不妨令\(A_i\)为空交集合列,不失一般性(因为空交集合列的基数大于一般的集合列)
     考虑\(\bigcup\limits_{\alpha \in (0,1)}A_{\alpha} \rightarrow (\alpha , A_{\alpha})\).
     由于上述映射是一一对应的,又由于\(\overline{\overline{A_{\alpha}}}=\overline{\overline{(0,1)}} = c\)
     从而\[\overline{\overline{\bigcup\limits_{\alpha \in (0,1)}A_{\alpha}}} = c \]
