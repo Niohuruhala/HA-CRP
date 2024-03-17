@@ -1,0 +1,301 @@
+\chapter{n维空间的点集}
+\section{聚点,内点,边界点,Bolzano–Weierstrass定理}
+1.证明\(P_0 \in E^{'}\)的充要条件是对于任意含有\(P_0\)的邻域\(N(P,\delta)\)中,恒有异于\(P_0\)的点\(P_1\)属于\(E\).而\(P_0\)为\(E\)的内点的充分必要条件则是存在含有\(P_0\)的邻域\(N(P,\delta)\)使得\(N(P,\delta) \subset E\)
+\begin{proof}
+    充分性显然.必要性:若\(P_0 \in E^{'}\)则\(\forall \delta > 0 \quad N(P_0 , \delta)\)中恒有无穷多个点属于E,所以对于任意含有\(P_0\)的邻域\(N(P,\delta)\)有:\(N(P_0 , \delta) \bigcap N(P, \delta) \subset E \) .
+    证明\(P_0\)为\(E\)的内点的充分必要条件则是存在含有\(P_0\)的邻域\(N(P,\delta)\)使得\(N(P,\delta) \subset E\)过程同上.
+\end{proof}
+2.设\(\mathbb{R}^n = \mathbb{R}^1\)是全体实数,\(E_1\)是\([0,1]\)上的全部有理点,求\(E^{'}_1 , \overline{E_1}\)
+\begin{proof}
+    由于有理数的稠密性,所以 \(E^{'}_1 = [0,1]\) ,\(\overline{E_1}=[0,1]\)
+\end{proof}
+3.设\(R^n =R^2\)是普通的xy平面\(E_2 = \left\{(x,y) ; x^2 +y^2 <1 \right\}\),求\(E^{'}_2 , \overline{E_2}\)
+\begin{proof}
+    考虑\(\left\{(x,y) ; x^2 +y^2 =1\right\}\) ,由于它的任意邻域包含无穷多个\(E_2\)中的点,并且\(\left\{(x,y); x^2+y^2 > 1\right\}\)是\(E_2\)的外点.
+    所以\(\overline{E_2}=E^{'}_2 =\left\{(x,y); x^2 + y^2 \leq 1\right\}\)
+\end{proof}
+4.设\(\mathbb{R}^n = \mathbb{R}^2\)是普通的xy平面.\(E_3\)函数是
+\begin{align*}
+    y=\begin{cases}
+        \sin \frac{1}{x} \quad & x\neq 0 \\ 
+         0 \quad &x=0
+    \end{cases}
+\end{align*}
+的图形上的点所作成的集合,求\(E^{'}_3\)
+\begin{proof}
+    由图(\ref{fig:enter-label_298})可知
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\linewidth]{figure/截屏2024-03-05 22.27.49.png}
+        \caption{}
+        \label{fig:enter-label_298}
+    \end{figure}
+    因此\(E^{'} = \left\{(o,y) ; -1\leq y\leq1\right\}\)
+\end{proof}
+5.证明当E是\(\mathbb{R}^n\)中的不可数无穷点集时,\(E^{'}\)不可能是有限集.
+\begin{proof}
+    (反证法): E的聚点有限,那么E是可数无穷点集(这是因为如果聚点有限,那么意味着\(E - E^{'}\)是孤立点集),矛盾!
+\end{proof}
+\section{开集,闭集与完备集}
+1.证明点集F为闭集的充要条件是\(\overline{F} = F\)
+\begin{proof}
+    必要性显然,证明充分性:若\(\overline{F}=F\)从而设\(x \in F^{'}\)则\(x\in F\)从而\(F^{'} \subset F\),则F为闭集
+\end{proof}
+2设\(f(x)\)是\((-\infty,\infty)\)上的实值连续函数,证明对于任意常数a,\(\left\{x ; f(x) >a\right\}\)都是开集,\(\left\{x ; f(x) \geq a \right\}\)都是闭集
+\begin{proof}
+        先证
+    根据海涅定理可知:若\(\lim_{n\rightarrow \infty} x_n =x_0 \),则\[\lim_{n \rightarrow \infty}f(x_n) =\lim_{x \rightarrow x_0} f(x) =a\]
+    所以根据极限定义:\(\exists \delta > 0 |x_n - x_0| < \delta \quad \forall \varepsilon > 0\)有\[f(x_n) \geq a \],所以对于\(\forall x_1 \in \left\{x ; f(x) \geq a\right\}\) 是聚点
+    因此\(\left\{x ; f(x) \geq a \right\}\)是闭集,根据De.morgan律可知:\(\left\{x ; f(x) >a\right\}\)是开集
+\end{proof}
+3.证明任何邻域\(N(P , \delta)\)都是开集并且\(\overline{N(P,\delta)} = \left\{P^{'} ; \rho(P^{'} , P) \leq \delta \right\}\)
+\begin{proof}
+    对于某一点\(a_0\)的邻域\(N(a_0,\delta)\).
+    记某一点\(a_1\)和\(a_0\)之间的距离为:\begin{align*}
+        \rho(a_1,a_0) =\bigl(\sum_{i=1}^{n}(a_{i1} - a_{i2})^2\bigr)^{\frac{1}{2}}
+    \end{align*}
+    对于任意点\(a_1\)属于上述的邻域都有 \(\delta_0 = \rho(a_1 , a_0) < delta\)
+    因此有\[N(a_1 , \delta_0) \subset N(a_0,\delta)\]
+    所以任何邻域都是开集. 同时由于\(\left\{P^{'} ; \rho(P{'},P) \leq \delta\right\}\)是包含\(N(P,\delta)\)的最小闭集 所以
+    \[\overline{N(P,\delta)} = \left\{P^{'} ; \rho(P{'},P) \leq \delta\right\}\]
+\end{proof}
+4.设\(\Delta\)是一有限闭区间,\(F_n \quad (n=1,2,3,\dots )\)都是\(\Delta\)的闭子集,证明如果\(\bigcap\limits_{n=1}^{\infty} F_n = \emptyset\),则必有正整数N,使得\(\bigcap\limits_{n=1}^{N}F_n = \emptyset\)
+\begin{proof}
+    若\(\bigcap\limits_{n=1}^{\infty} F_n = \emptyset \) 则记\(A_n = (F_n)^c\)
+    根据De.morgan律可知: 
+    \[\bigcup\limits_{n=1}^{\infty}A_n = \bigl(\bigcap\limits_{n=1}^{\infty} F_n \bigr)^c = \Delta\]
+    并且\(A_n\)是开集,\(\bigcup\limits_{n=1}^{\infty}\)是开覆盖,由于Borel有限覆盖定理可知:存在有限N个开子覆盖,覆盖整个区域\(\Delta\)
+    所以\[\bigcap\limits_{n=1}^{N} F_n = \emptyset\]
+\end{proof}
+5设\(E \subset \mathbf{R}^n\), \(\mathscr{M}\)是一族完全覆盖E的开邻域,则有\(\mathscr{M}\)中的可数(或有限)多个邻域\(N_1 ,\dots , N_m ,\dots \),它们也完全覆盖了E
+\begin{proof}
+    考虑E中的单点集\(a_i \in E \subset \mathbf{R}^n\), 从而一定有\( a_i \in N_i \) ,那么
+    \[\exists \delta > 0  \quad N(a_0 ,P ) \subset N_0 \]
+    由于有理数集的稠密性:\(\overline{Q^n} = R^n\)
+    所以得到那么一个集合 : \begin{align*}
+        A_i = \left\{(n ,r) ; n \in Q^n \quad r\in r\right\}
+    \end{align*}
+    因此\begin{align*}
+        A_i \subset N ( a_0 , P ) \subset N_0 \\
+       E= \bigcup\limits_{i=1}^{\infty} A_i \subset \bigcup\limits_{i=1}^{\infty} N_i
+    \end{align*}
+    得证
+\end{proof}
+6.证明\(\mathbb{R}^n\)中任意开集G都可以表现成\(G= \bigcup\limits_{i=1}^{\infty} I_i^{(n)}\)的形式,其中\[I_i^{(n)}=\left\{P ; P = (x_1 , x_2 , x_3 , \dots ,x_n) ,c_j^{(i)}< x_j<d_j^{(i)}, j=1,2,3,\dots , n \right\}\]
+\begin{proof}
+    记\(\exists \delta > 0 \), 同时\(P \in G \)所以\[G = \bigcup\limits_{P \in G} N(P, \delta)\]
+    构造如下\(I^{(n)}_P\)
+    \begin{align*}
+        I^{(n)}_P = \left\{Q; Q= (x_1, x_2, \dots , x_n) \quad x_i - \frac{\delta}{\sqrt{n}} < P_n < x_i + \frac{\delta}{\sqrt{n}}\right\}
+    \end{align*}
+    同时因为 
+    \begin{align*}
+        \rho(P,Q) &= \left\{\sum_{i=1}^{n}(x_i-P_i)^2\right\}^{\frac{1}{2}} \\
+        &< \sum_{i=1}^{n} \left\{\frac{\delta^2}{n}\right\}^{\frac{1}{2}}  \\ 
+        &= \delta
+    \end{align*}
+    通过上述得:
+    \begin{align*}
+        G = \bigcup\limits_{P \in G} I^{(n)}_P \subset \bigcup\limits_{P \in G} N(P,\delta_P) = G 
+    \end{align*}
+    通过题5可得证
+\end{proof}
+7.试根据Borel有限覆盖定理证明Bolzano-Bolzano–Weierstrass定理
+\begin{proof}
+    \(E \subset \mathbf{R}^n\)是有界无穷集合,从而可以找的到一族开覆盖\(N_n = \left\{x ; \rho(x,0) < K +\frac{1}{n}\right\}\)从而有可数多个\(N_n\)覆盖,因此能找到\(\lim_{n\rightarrow \infty }x_n = x^{'}\)
+\end{proof}
+8,\(\mathbf{R}^n\)中任何开集基数均为c 
+\begin{proof}
+    只需证明\(\overline{\overline{E}}\geq c\) 考虑\(\bigl([0,1]\bigr)^n\),不失一般性.且上述集合是有界闭集,所以E中有可数多个子集,\(\bigcup\limits_{i=1}^n E_i = \bigl([0,1]\bigr)^n\)则由Bernstein定理可知: \[\overline{\overline{E}} = c \]
+\end{proof}
+9.证明对于任意\(E \subset \mathbf{R}^n\),E都是\(\mathbf{R}^n\)中包含E的最小的闭集
+\begin{proof}
+    记\(\mathbf{U}=\left\{u,\text{u是开集},u\subset A\right\}\),命题等于证 \[\bigcup_{u \in \mathbf{U}}u=A^{o}\]
+    可以使用”两边夹“方法： \\
+    先证明: \(\bigcup_{u \in \mathbf{U}}u \supseteq A^{o}\) : 任取\(x_0 \in A^{o}\)，根据定义有 \[\exists u_i , x_O \in U_i \subseteq A \]
+    即\(u_i \in \mathbf{U}\),因而 有:\[x_0 \in u_i \subseteq \bigcup_{u \in \mathbf{U}}u\]
+    再证明: 只需要每个\(u_i \in \mathbf{U}\),有 \(u_i \subseteq A^{o}\) 对 \(\forall x \in u_i\),则
+    \[u_i \subseteq A \quad \text{则} x_0 \in A ^{o}\],只需利用De.morgan律可得证
+\end{proof}
+10.对于\(\mathbf{R}^n\)上定义的实函数\(f(x)\),令
+\[w(f,x)= \lim_{\delta \rightarrow 0^{+}}(\sup\limits_{|x^{'}- x | < \delta } f(x^{'})- \inf\limits_{|x^{'}- x | < \delta } f(x^{'}))\]
+\begin{proof}
+    首先可知
+    \begin{align*}
+        \lim_{\delta \rightarrow 0^{+}}(\sup\limits_{|x^{'}- x | < \delta } f(x^{'})- \inf\limits_{|x^{'}- x | < \delta } f(x^{'})) 
+        = \lim_{\delta \rightarrow 0^{+}}{\sup\limits_{x^{'}, x^{''} \in N (x ,\delta)} |f(x^{'})-f(x^{''})|}
+    \end{align*}
+    根据上面可知: 
+    \begin{align*}
+        \left\{x ; \omega(f,x) < \epsilon \right\} = \left\{x ;f(x) < \epsilon \right\} \quad \text{是闭集}
+    \end{align*}
+    因此有:
+    \(\left\{x; \omega(f,x) \geq \epsilon \right\}\)是闭集 同时根据定义可知f(x)的连续点集合为\[\left\{x; \omega(f,x) = 0 \right\}\]
+    因此有\(F_{\sigma}\)集 
+    \[\left\{x; \omega(f,x) = 0 \right\} = \bigcup\limits_{n=1}^{\infty} \left\{x ; \omega(f,x) \geq \frac{1}{n}\right\}\]
+\end{proof}
+11.于\(E \subset \mathbf{R}^n\)及实数a,定义\(aE=\left\{(ax_1, ax_2 ,\dots ,ax_n) ; (x_1,x_2,\dots , x_n) \in E^n \right\}\).证明当E为开集 aE为开集,当E为闭集时,aE为闭集
+\begin{proof}
+    若E为开集,则对于\(x\in E\),我们有\(N(x,\delta) \subset E \quad (\exists \delta > 0)\)
+    所以有\(N(ax, a\delta) \subset aE\),因此\(ax \in aE\)所以aE为开集.证明闭集同理
+\end{proof}:
+12.见《基础拓扑学讲义》第一章 第二节 定理
+13.证明:\(f(P)\)下半连续等价于对任意实数\(\alpha\),\(\left\{P;f(P) \leq \alpha\right\}\)都是\(\mathbf{R}^n\)中的闭集,也等价于\(\left\{(p,y); P \in \mathbf{R}^n ,f(P) \leq y \right\}\) 是\(\mathbf{R}^{n+1}\)中包含E的最小的闭集
+\begin{proof}
+     略.
+\end{proof}
+14.设A,B是\(\mathbf{R}^n\)中的有界闭集,\(0<\lambda<1\),证明:
+\[\lambda A + (1-\lambda)B \equiv^{def}\left\{x ;x = (x_1,\dots , x_n), \text{有} (y_1,\dots,y_n) \in A (z_1,\dots ,z_n) \in B, \text{使} x_i =\lambda y_i +(1-\lambda) z_i , i =1,\dots , n \right\}\]
+\begin{proof}
+    由于A,B有界,那么不妨设\(||A|| < M_1 \quad ||B|| < M_2\) 从而有可数多个\begin{align*}
+        || \lambda A + (1-\lambda)Q|| &\leq \lambda ||A|| + (1-\lambda) || B||  \\ 
+        \lambda M_1 +(1-\lambda)M_2
+    \end{align*}
+    所以\(\lambda A + (1-\lambda)B \)有界
+    并且由于A,B是闭集,所以对于 \(\lambda A +(1-\lambda) B \)来说, 任取A,B的聚点为\(a_0 , b_0\),则\(\lambda A +(1-\lambda) B \)的聚点为\(\lambda a_0 + (1-\lambda)b_0\),得证.
+    \\ 
+    返例为\(A= \left\{(x,0)  \quad  x \in \mathbf{R}^n \right\} , B=\left\{(0,0) \right\}\)
+\end{proof}
+\section{p进位表数法}
+1.证明由(0,1)开区间中的实数x组成的实数序列的全体作为一个基数为c的集合,进而证明任何实数组成的实数序列的全体所作成的集合的基数为c
+\begin{proof}
+    利用二分法可得: 在(0,1)开区间中的所有实数均唯一地表示为\(0.x_1x_2x_3\dots \quad x_i = 0\text{或}1 \) ,那么题中集合和(0,1)存在单射,则该集合基数为c 进而利用对角线法
+    \begin{align*}
+        \begin{bmatrix}
+            x_{11} & \dots& x_{1n}  \\ 
+            \vdots & \ddots & \vdots \\ 
+            x_{n1} & \dots & x_{nn}
+        \end{bmatrix}
+    \end{align*}
+    根据Cantor的作法,可知任何实数组成的实数序列的全体所作成的集合的基数为c
+\end{proof}
+2.证明区间[0,1]上的全体连续函数所作成的全体集合\(U\)的基数为c,同样[0,1]上的左连续的单调函数的全体所构成的集合\(W\)的基数c
+\begin{proof}
+    考虑集合\(A_1= \left\{x; f(x) \leq \frac{1}{2}\right\}\)以及\(B_1=\left\{x ;f(x) > \frac{1}{2}\right\}\),分别将符合集合\(A_1\)的连续函数记为\(0.1\),符合集合\(B_1\)的连续函数记为\(0.0\),重复以上操作 记映射为\(I: f \mapsto  0,x_1,x_2\dots \quad x_i = 0\text{或} 1 \).所以只需证明
+    若满足\(I(f_1)=I(f_2)=0.x_1x_2\dots \)当且仅当\(f_1 =f_2 \)
+    可以断言上述一定成立,若不然则有:\(f_1\)有不连续点,矛盾!
+    所以根据Bernstein定理可知:区间[0,1]上的全体连续函数所作成的全体集合\(U\)的基数为c
+    同样的[0,1]上的左连续的单调函数的全体所构成的集合\(W\)的基数c
+\end{proof}
+\section{一维开集,闭集,完备集的构造}
+1.证明全体有理数所构成的集合不是\(G_{\delta}\)集,即不能表成可数多个开集的交
+\begin{proof}
+  (反证法):如果全体有理数可以表成可数多个开集的交即\(Q= \bigcap\limits_{i=1}^{\infty} I_i\)其中\(I_i\)是开集.同时对于所有\(i \in I\)来说: 
+  \[\exists delta_0 >0 \quad B(i,\delta_0) \subset \bigcap\limits_{i=1}^{\infty} I_i \]
+  可以根据有理数的稠密性可知:上述一定不成立(因为\(\mathbb{R}^1 \)是不可数集合)
+  得证
+\end{proof}
+2.证明\([0,1]\)上全体无理数所作成的集合不是\(F_{\sigma}\)集
+\begin{proof}
+  (反证法) 
+  若\([0,1]\)上全体无理数所作成的集合是\(F_{\sigma}\)集,从而可知在\([0,1]\)上的全体无理数所构成的集合为闭集,矛盾
+\end{proof}
+3.证明不可能在\([0,1]\)上有定义的,在有理数点都连续,在无理点处都不连续的实函数
+\begin{proof}
+  根据2.10可知:\(f(x)\)的全体不连续点作成一\(F_{\sigma}\)集,由题2可知\([0,1]\)上全体无理数所作成的集合不是\(F_{\sigma}\)集,因此无法找到这样的实函数. 
+\end{proof}
+4.证明\(\mathbb{R}^1 \)中全体开集构成一基数为c的集合,从而\(\mathbf{R}^1 \)中全体闭集合也构成一基数为c的集合
+\begin{proof}
+ 先证明:全体开集U构成一个基数为c的集合 \\ 
+  首先考虑任一有界开集,根据定理可知:它是由有限多个或者可数多个互不相交的开区间的并,这些开区间的端点都不属于这个开集.因此\(\overline{\overline{U}} \geq c \)
+  其次因为\(\mathbf{R}^1=\bigcup\limits_{v \in \mathbf{R}^1}v\)
+  因此全体开集\(\overline{\overline{U}}\leq c \)根据Bernstein定理可知:\(\overline{\overline{U}}= c \)
+  \\ 
+  证明:全体闭集N构成了一个基数为c的集合
+  \\
+  证明原理同上. 
+\end{proof}
+5.设\(F \subset \mathbf{R}^1 \)是非空有界完备集合,证明,存在\(\mathbf{R}^1 \)上连续函数f,满足:\\
+(1)\(0\leq f(x)\leq 1 ,\quad \forall t \in \mathbf{R}^1 \) ;\\
+(2)\(f(t_1) \leq f(t_2) ,\quad \forall t_1 \leq t_2\)
+\\
+(3) \(\left\{f(t); t\in F\right\} = [0,1]\)
+\begin{proof}
+  因为\(F\subset \mathbb{R}^1 \) 时有界完备集合,所以\(F = F^{‘}\)并且根据定理可知:F是从一闭区间\([a,b]\)中去掉有限个
+  或者可数多个彼此之间没有公共端点且与原来的闭区间也没有公共端点的开区间而成.这些区间的端点都是属于F的.
+  因此:F中得到了有限个(易知命题成立,不考虑)或者可数多个 \([a_i,b_i]\) 从而得到连续函数f为 \begin{align*}
+    f(I) =  a_i\frac{x -a_i}{b_i-a_i} \quad I = (a_i ,b_i)
+  \end{align*}
+  经过验证可知,上述函数即为所求 (可能为错误解法!!!!)
+\end{proof}
+\section{点集间的距离}
+1.证明定理2:设E是一点集,\(d >0\),U是所以到E的距离小于d的点P作成的点集,即\[U = \left\{P ; \rho(P,E)<d \right\}\]
+则U是一开集,且\(U\subset E \)
+\begin{proof}
+  对于U中的任意元素\(u_i\),则根据三角不等式可知: 
+  \begin{align*}
+    \rho(u_i, u_j) - \rho(u_j ,E) &< \rho(u_i,E)
+    \Leftrightarrow 
+    \rho(u_i,u_j) < 2d 
+  \end{align*}
+  因此记\(\delta =2d \) \(B(u_i ,2d)\subset U \)
+  因此U是一开集且\(U \subset E \)
+\end{proof}
+2.证明任何闭集都可表成可数多个开集的交
+\begin{proof}
+  给出任意的闭集A,
+  记\(G_n =\left\{x ; \rho(G_n,A)<\frac{1}{n}\right\}\)
+  根据定理2可知: \(G_n \)是一开集且\(G_n \supset A\)
+  只需证明: \begin{align*}
+    A = \bigcap\limits_{i=1}^{\infty} G_n 
+  \end{align*}
+  因为\[\lim_{x \rightarrow \infty } \frac{1}{n}= 0 \]
+  所以\begin{align*}
+    A = \bigcap\limits_{i=1}^{\infty} G_n
+  \end{align*}
+\end{proof}
+3.举例说明定理1中的A,B都无界时结论不成立
+\begin{proof}
+  首先复习定理1: 设A,B为两个非空闭集,且其中至有一个有界,则必有\(P \in A ,Q\in B \)使得\begin{align*}
+    \rho(P,Q)=\rho(A,B)
+  \end{align*} 
+  举例说明当A,B无界时结论不成立.
+  例如:\(A= \left\{(0,y)\right\}\) \(B =\left\{(\frac{1}{n},0)\right\}\)
+\end{proof}
+4.取消定理3中\(F_1,F_2 \)有界的限制
+\begin{proof}
+  事实上,定理3中关于\(F_1 ,F_2\)的限制可以去除,这是因为我们可以找到一个更加广泛的开集来规范闭集(具体证明过程依据课堂教学) 
+\end{proof}
+5.设\(E \subset \mathbb{R}^n\),\(E \neq \emptyset , P\in \mathbb{R}^n\),证明\(\rho(P,E)\)是P的在\(\mathbb
+{R}^n \) 上一致连续的函数
+\begin{proof}
+  \(\rho(P,E) = \left\{E ; \min_{p \in P } \rho(p,E)\right\}\) 
+  所以对于\(\rho(p_1,p_2) \leq \delta \)根据三角不等式可知:
+  \begin{align*}
+    \rho(P,E) \leq \rho(p_1 ,E) +\rho(p_1,p_2) 
+  \end{align*}
+  因此有
+  \begin{align*}
+    \rho(P,E) - \rho(p_1,p_2) \leq \delta = \epsilon
+  \end{align*}
+  因此 \(\rho(P,E)\) 是P在\(\mathbb{R}^n \) 上的一致连续函数
+\end{proof}
+6.证明对于\(\mathbb{R}^n \)中任意两个不相交的非空闭集\(F_1 ,F_2\) 都有\(\mathbb{R}^n \) 上的连续函数\(f(P)\),使得\(0\leq f(P) \leq 1 \) 且在\(F_1\)上\(f(P)=0\),在\(F_2\)上\(f(P)=1\)
+\begin{proof}[Proof ]
+  按照拓扑学中的道路连接定理证明方法,证明略.
+\end{proof}
+\section{课后思考题}
+\begin{problem}[课上思考题]
+        \begin{align}
+            \text{P是完备集} \Rightarrow \overline{\overline{P}} = c
+        \end{align}
+    \end{problem}
+    \textit{ Sol. }
+        \(\forall p_i \in P\),同时因为P是完备集同时是\(\mathbb{R}^1\)的子集,因此我们可知:应存在一区间\([\alpha , \beta] \subset P\), 同时\(\alpha,\beta \in P \).由于\(P=P^{'}\) 所以\(p_i,\alpha,\beta\)的任意
+        的任意邻域均包含P中的无穷点,不妨令\(x_1 \in P \)满足
+        \begin{align}\label{1}
+            \left\{x_1;\min\limits_{x\in P}||x-\alpha|-|x-\beta|| \right\}
+        \end{align}
+        记\(\delta=\frac{1}{2^n} \quad n \rightarrow \infty \)
+        因此可以将区间\([\alpha,\beta]\)分成3段\[[\alpha, x_1-\delta] , [x_1-\delta,x_1+\delta],[x_1+\delta,\beta]\]
+        去掉\(x_1-\delta,x_1+\delta\)
+        将\([\alpha,x_1-\delta]\)继续分为三段: 记\(x_2 \in P\)满足
+        \begin{align}\label{2}
+            \left\{x_2; \min\limits_{x\in P}||x-\alpha|-|x-x_1+\delta||\right\}
+        \end{align}
+        则\([\alpha,x_1-\delta]\)分为三段 
+        \[[\alpha,x_2-\delta] , [x_2-\delta,x_2+\delta],[x_2+\delta,x_1-\delta]\]
+        将\(x_2-\delta,x_2+\delta\)去掉.
+        对\([x_1+\delta,\beta]\)进行如上操作
+        并不断进行如上操作,直到得到一只有\(x\in P\)组成的集合A,显然\(\overline{\overline{A}} \geq c \) 根据Bernstein定理可得 
+        \[\overline{\overline{P}}=c\]

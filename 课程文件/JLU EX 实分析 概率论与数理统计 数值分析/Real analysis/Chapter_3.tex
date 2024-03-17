@@ -1,0 +1,22 @@
+\section{测度理论}
+我们的直觉告诉我们,两个互不相交的集合的体积是可加的.但是在Real-A中,这样的幻象被打破了,本章我们将介绍和直觉相悖的测度理论,主要是专注于处理两个互不相交的集合体积无法可加的情况.
+我们先介绍一种“完美”解决集合“体积”的计算方法
+\begin{Theorem}[示性函数]
+  记如下函数 \begin{align}
+    \varphi_{A} = \begin{cases}
+      1, &\text{当} x \in A \\
+      0, &\text{当} x \notin A 
+    \end{cases}
+  \end{align} 
+  上述函数的含义是:检测这个点是否属于集合A,若属于则记为1,若不属于则记为0 从而一个集合的"体积"
+  指的是在当前标签集合内该集合的示性函数的积分
+\end{Theorem}
+\section{开集的体积}
+\begin{Theorem}
+  对于任何拓扑,都存在如下集合G,满足:
+  \begin{itemize}
+    \item \(G_i \subset G \) 若\(G_1 \bigcap G_2 =\emptyset \) ,则 上述集合可加 \\
+    \item 平移可加性 \\
+    \item 旋转可加性
+  \end{itemize}
+\end{Theorem}

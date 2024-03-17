@@ -44,7 +44,7 @@
         \mathscr{F}(\mathscr{A}_0)&= \left\{S , \emptyset , A, \mathscr{A}_0\ = \left\{\left\{\frac{1}{n}; \text{n为偶数}\right\}\right\}\right\} \\ 
         \mathscr{F}(\mathscr{A}_1) &= \left\{S, \emptyset, A_1 ,A_2\right\}
     \end{align*}
-    其中\(A_1\)指的是\(\mathscr{A}_0\ = \left\{\left\{\frac{1}{n}; \text{n为偶数}\right\}\right\}\)的全体子集, \(A_2\)指的是\( \left\{\left\{\frac{1}{n}; \text{n为偶数}\right\}\right\} \cap  \left\{\left\{\frac{1}{n}; \text{n为奇数}\right\}\right\}\)的全体子集
+    其中\(A_1\)指的是\(\mathscr{A}_0\ = \left\{\left\{\frac{1}{n}; \text{n为偶数}\right\}\right\}\)的包含\(\left\{\frac{1}{n} ; \text{n为偶数}\right\}\)全体子集, \(A_2\)指的是\( \left\{\left\{\frac{1}{n}; \text{n为偶数}\right\}\right\} \cap  \left\{\left\{\frac{1}{n}; \text{n为奇数}\right\}\right\}\)的全体子集
 \end{proof}
 6.对于S的子集A,定义A的示性函数为
 \begin{align}
@@ -139,7 +139,7 @@
 \end{proof}
 3.所有系数为有理数的多项式组成一可数集合
 \begin{proof}
-    记\(P_n\)为n次多项式,根据定理,\(\mathbb{Q}^n\)为可数集合,则\(P_n\)为可数集(\(P_n \text{中的系数组成}\mathbb{Q}^n\) )记所有系数为有理数的多项式的集合为A
+    记\(P_n\)为n次多项式,根据定理,\(\mathbb{Q}^{n+1}\)为可数集合,则\(P_n\)为可数集(\(P_n \text{中的系数组成}\mathbb{Q}^n\) )记所有系数为有理数的多项式的集合为A
     则\[A=\bigcup\limits_{i=1}^{\infty}P_n \]得证
 \end{proof}
 4.如果f(x)是\(-\infty , \infty \)上的单调函数,则\(f(x)\)的不连续点最多有可数多个
@@ -157,7 +157,7 @@
 7.若A是由非蜕化的开区间组成的不可数无穷集合,则有\(\delta >0\),使A中有无穷多个区间的长度大于\(\delta\).
 \begin{proof}
     (反证法):A中有有限多个区间的长度大于\(\delta\),因此 A中有无穷多个区间小于\(\delta\). 记如下符号:
-    \[B_n :  \left\{x ; |x| > \frac{1}{n} \right\}\]
+    \[B_n :  \left\{x ; |x| > \frac{1}{n} \right\} \quad \text{存在} N , n>N \]
     可知\(B_n\)是可数集,因此\[A = \bigcup\limits_{k=1}^{\infty} B_n\quad \text{是可数集}\]
     所以,矛盾!
 \end{proof}
@@ -196,6 +196,18 @@
 4.证明如果\(\overline{\overline{A \cup B}} =c\),则\(\overline{\overline{A}},\overline{\overline{B}}\)中至少一个为c
 \begin{proof}
     (反证法):根据连续统假设,作如下反证法. 如果\(\overline{\overline{A}},\overline{\overline{B}}\)均是可数集,那么矛盾显然
+    \\ 
+    改正: 作\(\varphi: A\bigcup B \rightarrow [0,1]^2 \)是双射 
+    \begin{itemize}
+      \item Cases1 : \(\varphi \) 与\(\left\{x\right\}\times[0,1]\)都相交 \begin{align*}
+          \overline{\overline{\varphi(A)}} \geq c \quad \overline{\overline{A}}
+      \end{align*}
+        \item Cases2 存在某\(\left\{x\right\}\times[0,1]\quad x \in [0,1]\) \(\varphi(A)\)与之不交.      
+          \begin{align*}
+            \varphi(B) \supset [0,1]
+          \end{align*}
+          从而可知\[\overline{\overline{B}} \geq c\]
+    \end{itemize}
 \end{proof}
 5.设\(F\)是\([0,1]\)上全体实函数所构成的集合,证明\(\overline{\overline{F}}= 2^c\)
 \begin{proof}
